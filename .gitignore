@@ -1,0 +1,35 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+.envrc
+.direnv/
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+/tests/output
+/tests/report
+/playwright/.cache/
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.development.local
+.env.test.local
+.env.production.local
+.env.personal
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+/**/.idea
+build/
+dist/
+node_modules/
+.secret-*
+**.sample
