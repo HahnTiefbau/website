@@ -3,6 +3,7 @@ import kabel_bw_logo from '../assets/kabelbw_logo_white.svg';
 import netze_bw_logo from '../assets/netze_bw_logo_white.svg';
 import stadtwerke_lubu_logo from '../assets/stadtwerke_lubu_logo_white.svg';
 import telekom_logo from '../assets/telekom_logo_white.svg';
+import { Link } from '../../catalyst-components/link';
 
 const blogPosts = [
   {
@@ -165,10 +166,10 @@ export function ReferencesPage() {
                 </div>
               </div>
               <h3 className="mt-3 text-lg/6 font-semibold text-white">
-                <a href={post.href}>
+                <Link href={post.href}>
                   <span className="absolute inset-0" />
                   {post.title}
-                </a>
+                </Link>
               </h3>
             </article>
           ))}

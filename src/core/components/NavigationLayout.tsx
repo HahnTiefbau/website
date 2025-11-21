@@ -2,58 +2,120 @@ import { useTranslation } from 'react-i18next';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Link } from '../../../catalyst-components/link';
 import { Text } from '../../../catalyst-components/text';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { SidebarItem } from '../../../catalyst-components/sidebar';
 import { Button } from '../../../catalyst-components/button';
 import { NavbarItem } from '../../../catalyst-components/navbar';
 import logo from '../../assets/logo_hahn.svg';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownItem,
+  DropdownMenu,
+} from '../../../catalyst-components/dropdown';
 
 const navigation = [
   { name: 'general.home', href: '/' },
   { name: 'general.services', href: '/services' },
   { name: 'general.references', href: '/references' },
   { name: 'general.about_us', href: '/about' },
-  { name: 'general.job_offers', href: '/jobs' },
 ];
 
+function classNames(
+  ...classes: Array<string | false | null | undefined>
+): string {
+  return classes.filter(Boolean).join(' ');
+}
+
 export function NavigationLayout() {
-  const { t } = useTranslation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const { t, i18n } = useTranslation();
+
+  const currentLangShort =
+    i18n.language === 'de'
+      ? 'DE'
+      : i18n.language === 'en'
+        ? 'EN'
+        : i18n.language?.toUpperCase();
   return (
     <div className="bg-background-white-gray">
       <header className="absolute inset-x-0 top-0 z-50">
         <nav
           aria-label="Global"
-          className="flex items-center justify-between h-full p-6 lg:px-8"
+          className="flex items-center justify-between h-full p-6 lg:px-6 border-b border-text/10 "
         >
-          <div className="flex lg:flex-1">
-            <a href="/" className="-m-5 p-1.5">
-              <img alt="" src={logo} className="h-12 w-auto" />
-            </a>
+          <div className="flex flex-row gap-20 items-center justify-between">
+            <div className="flex lg:flex-1">
+              <Link href="/" className="-mx-5 px-3 -mb-5 -mt-5.5">
+                <img alt="" src={logo} className="h-12 w-auto" />
+              </Link>
+            </div>
+            <div className="hidden lg:flex lg:gap-x-12">
+              {navigation.map(item => {
+                const isCurrent =
+                  location.pathname === item.href ||
+                  (item.href !== '/' &&
+                    location.pathname.startsWith(item.href));
+
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    aria-current={isCurrent ? 'page' : undefined}
+                    className={classNames(
+                      isCurrent
+                        ? 'text-text after:opacity-100'
+                        : 'text-secondary hover:text-text after:opacity-0 hover:after:opacity-50',
+                      'relative px-1 py-1 text-sm font-medium transition-all duration-300',
+
+                      'after:absolute after:left-0 after:bottom-0',
+                      'after:h-[2px] after:w-full after:rounded-full after:bg-accent-primary',
+                      'after:transition-all after:duration-300'
+                    )}
+                  >
+                    {t(item.name)}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
           <div className="flex lg:hidden">
             <NavbarItem onClick={() => setMobileMenuOpen(true)}>
-              <span className="flex-none h-6 w-6">
+              <span className="flex-none">
                 <Bars3Icon
                   aria-hidden="true"
-                  className="size-6 cursor-pointer"
+                  className="size-5 cursor-pointer"
                 />
               </span>
             </NavbarItem>
           </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map(item => (
-              <Link key={item.name} href={item.href}>
-                <Text className="text-sm/6 font-semibold text-text-secondary hover:text-text">
-                  {t(item.name)}
-                </Text>
-              </Link>
-            ))}
-          </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
-            <Button color={'orange'}>{t('general.contact')}</Button>
+            <div className="relative z-[60]">
+              <Dropdown>
+                <DropdownButton outline>{currentLangShort}</DropdownButton>
+                <DropdownMenu className="z-[70]">
+                  <DropdownItem
+                    className="cursor-pointer"
+                    onClick={() => i18n.changeLanguage('de')}
+                  >
+                    Deutsch
+                  </DropdownItem>
+                  <DropdownItem
+                    className="cursor-pointer"
+                    onClick={() => i18n.changeLanguage('en')}
+                  >
+                    Englisch
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
+            <Button href={'/contact'} color={'orange'}>
+              {t('general.contact')}
+            </Button>
           </div>
         </nav>
         <Dialog
@@ -62,9 +124,9 @@ export function NavigationLayout() {
           className="lg:hidden"
         >
           <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 dark:bg-gray-900 dark:sm:ring-gray-100/10">
+          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-4 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 dark:bg-gray-900 dark:sm:ring-gray-100/10">
             <div className="flex items-center justify-between">
-              <Link href={'/'} className="-m-3 p-1.5">
+              <Link href={'/'} className="pt-0.25">
                 <img alt="" src={logo} className="h-12 w-auto" />
                 <img
                   alt=""
@@ -91,6 +153,41 @@ export function NavigationLayout() {
                   <SidebarItem>
                     <Text>{t('general.contact')}</Text>
                   </SidebarItem>
+                  <Dropdown>
+                    <>
+                      <DropdownButton as={SidebarItem} className="w-full">
+                        <div className="flex w-full items-center justify-between">
+                          <Text>{t('general.language')}</Text>
+                          <span className="text-sm opacity-70">
+                            {i18n.language === 'de'
+                              ? 'DE'
+                              : i18n.language === 'en'
+                                ? 'EN'
+                                : i18n.language?.toUpperCase()}
+                          </span>
+                        </div>
+                      </DropdownButton>
+
+                      <DropdownMenu anchor="bottom start" className="z-[70]">
+                        <DropdownItem
+                          className="cursor-pointer"
+                          onClick={() => {
+                            i18n.changeLanguage('de');
+                          }}
+                        >
+                          Deutsch
+                        </DropdownItem>
+                        <DropdownItem
+                          className="cursor-pointer"
+                          onClick={() => {
+                            i18n.changeLanguage('en');
+                          }}
+                        >
+                          Englisch
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </>
+                  </Dropdown>
                 </div>
               </div>
             </div>

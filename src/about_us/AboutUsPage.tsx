@@ -1,4 +1,7 @@
 import group1 from '../assets/group_1.jpg';
+import { useEffect, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { Link } from '../../catalyst-components/link';
 
 const team = [
   {
@@ -75,7 +78,52 @@ const team = [
   },
 ];
 
+const jobOpenings = [
+  {
+    id: 1,
+    role: 'Bauleiter Tief- und Kabelbau (m/w/d)',
+    href: '/jobs/job1',
+    description:
+      'Verantwortung für die technische und wirtschaftliche Abwicklung von Bauprojekten, Koordination der Baustellenabläufe sowie Abstimmung mit Auftraggebern und Nachunternehmern.',
+    salary: '$75,000 USD',
+    location: 'San Francisco, CA',
+  },
+  {
+    id: 2,
+    role: 'Polier / Vorarbeiter (m/w/d)',
+    href: '/jobs/job2',
+    description:
+      'Organisation und Leitung der Baustellen im Tief- und Kabelbau, Einteilung der Mitarbeiter und Sicherstellung eines reibungslosen Arbeitsablaufs.',
+    salary: '$125,000 USD',
+    location: 'San Francisco, CA',
+  },
+  {
+    id: 3,
+    role: 'Facharbeiter Tief- und Kabelbau (m/w/d)',
+    href: '/jobs/job3',
+    description:
+      'Durchführung von Tiefbau- und Kabelverlegearbeiten, Bedienung von Baumaschinen sowie Unterstützung bei Bauvorbereitungen und -abschlüssen.',
+    salary: '$105,000 USD',
+    location: 'San Francisco, CA',
+  },
+];
+
 export function AboutUsPage() {
+  const jobsRef = useRef<HTMLDivElement | null>(null);
+  const [searchParams] = useSearchParams();
+  const shouldScroll = searchParams.get('scroll') === 'jobs';
+
+  useEffect(() => {
+    if (shouldScroll && jobsRef.current) {
+      jobsRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+      const newUrl = location.pathname + location.hash;
+      window.history.replaceState({}, '', newUrl);
+    }
+  }, [shouldScroll]);
+
   return (
     <div className="relative isolate -z-10">
       <div className="relative isolate -z-10">
@@ -202,7 +250,7 @@ export function AboutUsPage() {
         />
       </div>
 
-      <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-48 lg:px-8 pb-32">
+      <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-48 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
             Unser Team
@@ -233,6 +281,63 @@ export function AboutUsPage() {
             </li>
           ))}
         </ul>
+      </div>
+      <div
+        ref={jobsRef}
+        className="mx-auto mt-32 max-w-7xl px-6 sm:mt-48 lg:px-8 mb-32"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto flex max-w-2xl flex-col items-end justify-between gap-16 lg:mx-0 lg:max-w-none lg:flex-row">
+            <div className="w-full lg:max-w-lg lg:flex-auto">
+              <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
+                Werde teil unseres Teams
+              </h2>
+              <p className="mt-6 text-xl/8 text-gray-600 dark:text-gray-400">
+                Zur Verstärkung unseres Teams suchen wir qualifizierte und
+                zuverlässige Mitarbeiterinnen und Mitarbeiter. Wir bieten Ihnen
+                eine sichere Anstellung, moderne Arbeitsbedingungen und
+                abwechslungsreiche Projekte in der Region.
+              </p>
+              <img
+                alt=""
+                src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1344&h=1104&q=80"
+                className="mt-16 aspect-6/5 w-full rounded-2xl object-cover outline-1 -outline-offset-1 outline-black/5 lg:aspect-auto lg:h-138 dark:outline-white/10"
+              />
+            </div>
+            <div className="w-full lg:max-w-xl lg:flex-auto">
+              <h3 className="sr-only">Job openings</h3>
+              <ul className="-my-8 divide-y divide-gray-100 dark:divide-gray-800">
+                {jobOpenings.map(opening => (
+                  <li key={opening.id} className="py-8">
+                    <dl className="relative flex flex-wrap gap-x-3">
+                      <dt className="sr-only">Role</dt>
+                      <dd className="w-full flex-none text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                        <Link href={opening.href}>
+                          {opening.role}
+                          <span
+                            aria-hidden="true"
+                            className="absolute inset-0"
+                          />
+                        </Link>
+                      </dd>
+                      <dt className="sr-only">Description</dt>
+                      <dd className="mt-2 w-full flex-none text-base/7 text-gray-600 dark:text-gray-400">
+                        {opening.description}
+                      </dd>
+                      <Link
+                        href={opening.href}
+                        className="text-sm/6 mt-2 font-semibold text-accent-primary"
+                      >
+                        Erfahre mehr und bewirb dich jetzt{' '}
+                        <span aria-hidden="true">→</span>
+                      </Link>
+                    </dl>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

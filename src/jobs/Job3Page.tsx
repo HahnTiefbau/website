@@ -1,97 +1,20 @@
-import { BuildingOffice2Icon, PhoneIcon } from '@heroicons/react/24/outline';
-import { EnvelopeIcon } from '@heroicons/react/24/solid';
 import { Button } from '../../catalyst-components/button';
+import { CheckCircleIcon, PaperClipIcon } from '@heroicons/react/24/outline';
 
-const jobOpenings = [
-  {
-    id: 1,
-    role: 'Bauleiter Tief- und Kabelbau (m/w/d)',
-    href: '#',
-    description:
-      'Verantwortung für die technische und wirtschaftliche Abwicklung von Bauprojekten, Koordination der Baustellenabläufe sowie Abstimmung mit Auftraggebern und Nachunternehmern.',
-    salary: '$75,000 USD',
-    location: 'San Francisco, CA',
-  },
-  {
-    id: 2,
-    role: 'Polier / Vorarbeiter (m/w/d)',
-    href: '#',
-    description:
-      'Organisation und Leitung der Baustellen im Tief- und Kabelbau, Einteilung der Mitarbeiter und Sicherstellung eines reibungslosen Arbeitsablaufs.',
-    salary: '$125,000 USD',
-    location: 'San Francisco, CA',
-  },
-  {
-    id: 3,
-    role: 'Facharbeiter Tief- und Kabelbau (m/w/d)',
-    href: '#',
-    description:
-      'Durchführung von Tiefbau- und Kabelverlegearbeiten, Bedienung von Baumaschinen sowie Unterstützung bei Bauvorbereitungen und -abschlüssen.',
-    salary: '$105,000 USD',
-    location: 'San Francisco, CA',
-  },
+const benefits = [
+  'Faire Bezahlung',
+  'Betriebliche Zusatzleistungen',
+  '30 Tage Urlaub',
+  'Moderne Maschinen',
+  'Kollegiales Miteinander',
+  'Gemeinsame Team-Events',
 ];
 
-export function JobOffersPage() {
+export function Job3Page() {
   return (
     <div className="relative isolate -z-10">
-      <div className="relative isolate -z-10">
-        <div className="relative isolate px-6 py-16 sm:py-24 lg:px-8 bg-white">
-          <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
-            <div className="mx-auto flex max-w-2xl flex-col items-end justify-between gap-16 lg:mx-0 lg:max-w-none lg:flex-row">
-              <div className="w-full lg:max-w-lg lg:flex-auto">
-                <h2 className="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl dark:text-white">
-                  Wir suchen engagierte Fachkräfte für unser Bauunternehmen
-                </h2>
-                <p className="mt-6 text-xl/8 text-gray-600 dark:text-gray-400">
-                  Zur Verstärkung unseres Teams suchen wir qualifizierte und
-                  zuverlässige Mitarbeiterinnen und Mitarbeiter. Wir bieten
-                  Ihnen eine sichere Anstellung, moderne Arbeitsbedingungen und
-                  abwechslungsreiche Projekte in der Region.
-                </p>
-                <img
-                  alt=""
-                  src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1344&h=1104&q=80"
-                  className="mt-16 aspect-6/5 w-full rounded-2xl object-cover outline-1 -outline-offset-1 outline-black/5 lg:aspect-auto lg:h-138 dark:outline-white/10"
-                />
-              </div>
-              <div className="w-full lg:max-w-xl lg:flex-auto">
-                <h3 className="sr-only">Job openings</h3>
-                <ul className="-my-8 divide-y divide-gray-100 dark:divide-gray-800">
-                  {jobOpenings.map(opening => (
-                    <li key={opening.id} className="py-8">
-                      <dl className="relative flex flex-wrap gap-x-3">
-                        <dt className="sr-only">Role</dt>
-                        <dd className="w-full flex-none text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
-                          <a href={opening.href}>
-                            {opening.role}
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-0"
-                            />
-                          </a>
-                        </dd>
-                        <dt className="sr-only">Description</dt>
-                        <dd className="mt-2 w-full flex-none text-base/7 text-gray-600 dark:text-gray-400">
-                          {opening.description}
-                        </dd>
-                        <a
-                          href="#"
-                          className="text-sm/6 mt-2 font-semibold text-accent-primary"
-                        >
-                          Erfahre mehr <span aria-hidden="true">→</span>
-                        </a>
-                      </dl>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="relative isolate bg-white dark:bg-gray-900">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 min-h-screen lg:grid-cols-2">
           <div className="relative px-6 pt-24 pb-20 sm:pt-32 lg:static lg:px-8 lg:py-48">
             <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
               <div className="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-gray-100 ring-1 ring-gray-900/10 lg:w-1/2 dark:bg-gray-900 dark:ring-white/10">
@@ -145,70 +68,33 @@ export function JobOffersPage() {
                 </div>
               </div>
               <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
-                Kontaktieren Sie uns
+                Facharbeiter Tief- und Kabelbau (m/w/d)
               </h2>
               <p className="mt-6 text-lg/8 text-gray-600 dark:text-gray-400">
-                Sie haben Interesse an einer unserer Stellen oder möchten mehr
-                über uns erfahren? Kontaktieren Sie uns gerne telefonisch, per
-                E-Mail oder über das Kontaktformular – wir freuen uns auf Ihre
-                Nachricht. <br />
-                <br />
-                Wenn Sie sich direkt bewerben möchten, wählen Sie einfach die
-                entsprechende Stellenausschreibung aus und nutzen Sie das
-                Bewerbungsformular.
+                Als Facharbeiter im Tief- und Kabelbau (m/w/d) sind Sie ein
+                wichtiger Teil unseres Baustellenteams und unterstützen bei der
+                fachgerechten Ausführung aller Arbeiten rund um Erd-, Grabungs-
+                und Kabelverlegearbeiten. Sie bedienen Baumaschinen und
+                Werkzeuge, bereiten Baugruben vor, verlegen Leitungen und sorgen
+                für eine saubere und sichere Arbeitsumgebung. Mit handwerklichem
+                Geschick, Teamfähigkeit und Verantwortungsbewusstsein tragen Sie
+                entscheidend zum erfolgreichen Ablauf unserer Bauprojekte bei
+                und unterstützen das Team beim Ausbau moderner Infrastruktur.
               </p>
-              <dl className="mt-10 space-y-4 text-base/7 text-gray-600 dark:text-gray-300">
-                <div className="flex gap-x-4">
-                  <dt className="flex-none">
-                    <span className="sr-only">Address</span>
-                    <BuildingOffice2Icon
+              <ul
+                role="list"
+                className="mt-10 grid grid-cols-1 gap-x-8 gap-y-3 text-base/7 text-gray-950 grid-cols-1"
+              >
+                {benefits.map(benefit => (
+                  <li key={benefit} className="flex gap-x-3">
+                    <CheckCircleIcon
                       aria-hidden="true"
-                      className="h-7 w-6 text-accent-primary"
+                      className="h-7 w-5 flex-none text-accent-primary"
                     />
-                  </dt>
-                  <dd>
-                    Ludwig Hahn Tief- & Kabelbau GmbH
-                    <br />
-                    Winnender Str. 1
-                    <br />
-                    71522 Backnang
-                  </dd>
-                </div>
-                <div className="flex gap-x-4">
-                  <dt className="flex-none">
-                    <span className="sr-only">Telephone</span>
-                    <PhoneIcon
-                      aria-hidden="true"
-                      className="h-7 w-6 text-accent-primary"
-                    />
-                  </dt>
-                  <dd>
-                    <a
-                      href="tel: 07191 32220"
-                      className="text-accent-primary hover:text-orange-600"
-                    >
-                      07191 32220
-                    </a>
-                  </dd>
-                </div>
-                <div className="flex gap-x-4">
-                  <dt className="flex-none">
-                    <span className="sr-only">Email</span>
-                    <EnvelopeIcon
-                      aria-hidden="true"
-                      className="h-7 w-6 text-accent-primary"
-                    />
-                  </dt>
-                  <dd>
-                    <a
-                      href="mailto:info@hahn-tief-kabelbau.de"
-                      className="text-accent-primary hover:text-orange-600"
-                    >
-                      info@hahn-tief-kabelbau.de
-                    </a>
-                  </dd>
-                </div>
-              </dl>
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
           <form
@@ -223,7 +109,7 @@ export function JobOffersPage() {
                     htmlFor="first-name"
                     className="block text-sm/6 font-semibold text-gray-900 dark:text-white"
                   >
-                    First name
+                    Vorname
                   </label>
                   <div className="mt-2.5">
                     <input
@@ -240,7 +126,7 @@ export function JobOffersPage() {
                     htmlFor="last-name"
                     className="block text-sm/6 font-semibold text-gray-900 dark:text-white"
                   >
-                    Last name
+                    Nachname
                   </label>
                   <div className="mt-2.5">
                     <input
@@ -274,7 +160,7 @@ export function JobOffersPage() {
                     htmlFor="phone-number"
                     className="block text-sm/6 font-semibold text-gray-900 dark:text-white"
                   >
-                    Phone number
+                    Telefonnummer
                   </label>
                   <div className="mt-2.5">
                     <input
@@ -291,7 +177,7 @@ export function JobOffersPage() {
                     htmlFor="message"
                     className="block text-sm/6 font-semibold text-gray-900 dark:text-white"
                   >
-                    Message
+                    Nachricht
                   </label>
                   <div className="mt-2.5">
                     <textarea
@@ -303,9 +189,39 @@ export function JobOffersPage() {
                     />
                   </div>
                 </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm/6 font-semibold text-gray-900 dark:text-white"
+                  >
+                    Anhänge
+                  </label>
+                  <p className="block text-sm/6 text-gray-900 dark:text-white">
+                    Fügen Sie hier Ihren Lebenslauf, Anschreiben und ggfs.
+                    weitere Dokumente zu Ihrer Bewerbung hinzu.
+                  </p>
+                  <label
+                    htmlFor="attachments"
+                    className="flex mt-2 w-fit cursor-pointer items-center gap-2 rounded-lg border border-text/50 bg-white px-4 py-2 text-sm font-medium text-gray-700"
+                  >
+                    <PaperClipIcon
+                      className="size-4 text-text"
+                      aria-hidden="true"
+                    />
+                    Datei auswählen
+                  </label>
+
+                  <input
+                    id="attachments"
+                    name="attachments"
+                    type="file"
+                    multiple
+                    className="hidden"
+                  />
+                </div>
               </div>
               <div className="mt-8 flex justify-end">
-                <Button color={'orange'}>Nachricht senden</Button>
+                <Button color={'orange'}>Bewerbung abschicken</Button>
               </div>
             </div>
           </form>

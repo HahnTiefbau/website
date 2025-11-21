@@ -1,6 +1,7 @@
 import group2 from '../assets/group_2.jpg';
 import group3 from '../assets/group_3.jpg';
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
+import { Link } from '../../catalyst-components/link';
 
 const benefits = [
   'Faire Bezahlung',
@@ -129,13 +130,13 @@ export function HomePage() {
                 ))}
               </ul>
               <div className="mt-10 flex">
-                <a
-                  href="/jobs"
+                <Link
+                  href="/about?scroll=jobs"
                   className="text-sm/6 font-semibold text-accent-primary hover:text-orange-600"
                 >
                   Siehe dir unsere Stellenangebote an
                   <span aria-hidden="true">&rarr;</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
