@@ -4,7 +4,7 @@ import { Link } from '../../../catalyst-components/link';
 import { Text } from '../../../catalyst-components/text';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SidebarItem } from '../../../catalyst-components/sidebar';
 import { Button } from '../../../catalyst-components/button';
 import { NavbarItem } from '../../../catalyst-components/navbar';
@@ -15,6 +15,7 @@ import {
   DropdownItem,
   DropdownMenu,
 } from '../../../catalyst-components/dropdown';
+import Cookies from 'js-cookie';
 
 const navigation = [
   { name: 'general.home', href: '/' },
@@ -35,6 +36,18 @@ export function NavigationLayout() {
 
   const { t, i18n } = useTranslation();
 
+  useEffect(() => {
+    const cookieLang = Cookies.get('site_language');
+    if (cookieLang && cookieLang !== i18n.language) {
+      i18n.changeLanguage(cookieLang);
+    }
+  }, [i18n]);
+
+  function handleLanguageChange(lang: 'de' | 'en') {
+    Cookies.set('site_language', lang, { expires: 365, sameSite: 'Lax' });
+    i18n.changeLanguage(lang);
+  }
+
   const currentLangShort =
     i18n.language === 'de'
       ? 'DE'
@@ -46,7 +59,7 @@ export function NavigationLayout() {
       <header className="absolute inset-x-0 top-0 z-50">
         <nav
           aria-label="Global"
-          className="flex items-center justify-between h-full p-6 lg:px-6 border-b border-text/10 "
+          className="flex items-center justify-between h-full p-6 lg:px-6 border-b border-text-900/10"
         >
           <div className="flex flex-row gap-20 items-center justify-between">
             <div className="flex lg:flex-1">
@@ -68,8 +81,8 @@ export function NavigationLayout() {
                     aria-current={isCurrent ? 'page' : undefined}
                     className={classNames(
                       isCurrent
-                        ? 'text-text after:opacity-100'
-                        : 'text-secondary hover:text-text after:opacity-0 hover:after:opacity-50',
+                        ? 'text-text-900 after:opacity-100'
+                        : 'text-text-700 hover:text-text-900 after:opacity-0 hover:after:opacity-50',
                       'relative px-1 py-1 text-sm font-medium transition-all duration-300',
 
                       'after:absolute after:left-0 after:bottom-0',
@@ -100,13 +113,13 @@ export function NavigationLayout() {
                 <DropdownMenu className="z-[70]">
                   <DropdownItem
                     className="cursor-pointer"
-                    onClick={() => i18n.changeLanguage('de')}
+                    onClick={() => handleLanguageChange('de')}
                   >
                     Deutsch
                   </DropdownItem>
                   <DropdownItem
                     className="cursor-pointer"
-                    onClick={() => i18n.changeLanguage('en')}
+                    onClick={() => handleLanguageChange('en')}
                   >
                     Englisch
                   </DropdownItem>
@@ -124,7 +137,7 @@ export function NavigationLayout() {
           className="lg:hidden"
         >
           <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-4 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 dark:bg-gray-900 dark:sm:ring-gray-100/10">
+          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-4 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
               <Link href={'/'} className="pt-0.25">
                 <img alt="" src={logo} className="h-12 w-auto" />

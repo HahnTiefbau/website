@@ -122,10 +122,10 @@ export function ReferencesPage() {
       </div>
       <div className="mx-auto my-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-          <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl dark:text-white">
+          <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">
             Projekte
           </h2>
-          <p className="mt-2 text-lg/8 text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-lg/8 text-gray-600">
             Bekommen Sie Einblicke in Projekte, die wir für unsere Partner im
             Energie- und Versorgungsnetz erfolgreich realisiert haben.
           </p>
@@ -134,15 +134,15 @@ export function ReferencesPage() {
           {blogPosts.map(post => (
             <article
               key={post.id}
-              className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80 dark:bg-gray-800"
+              className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80"
             >
               <img
                 alt=""
                 src={post.imageUrl}
                 className="absolute inset-0 -z-10 size-full object-cover"
               />
-              <div className="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40 dark:from-black/80 dark:via-black/40" />
-              <div className="absolute inset-0 -z-10 rounded-2xl inset-ring inset-ring-gray-900/10 dark:inset-ring-white/10" />
+              <div className="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40" />
+              <div className="absolute inset-0 -z-10 rounded-2xl inset-ring inset-ring-gray-900/10" />
 
               <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm/6 text-gray-300">
                 <time dateTime={post.datetime} className="mr-8">
@@ -151,7 +151,7 @@ export function ReferencesPage() {
                 <div className="-ml-4 flex items-center gap-x-4">
                   <svg
                     viewBox="0 0 2 2"
-                    className="-ml-0.5 size-0.5 flex-none fill-white/50 dark:fill-gray-300/50"
+                    className="-ml-0.5 size-0.5 flex-none fill-white/50"
                   >
                     <circle r={1} cx={1} cy={1} />
                   </svg>
@@ -159,7 +159,7 @@ export function ReferencesPage() {
                     <img
                       alt=""
                       src={post.author.imageUrl}
-                      className="size-6 flex-none rounded-full bg-white/10 dark:bg-gray-800/10"
+                      className="size-6 flex-none rounded-full bg-white/10"
                     />
                     {post.author.name}
                   </div>

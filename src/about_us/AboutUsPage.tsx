@@ -176,10 +176,10 @@ export function AboutUsPage() {
           <div className="mx-auto max-w-7xl px-6 pt-36 pb-32 sm:pt-60 lg:px-8 lg:pt-32">
             <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
               <div className="relative w-full lg:max-w-xl lg:shrink-0 xl:max-w-2xl">
-                <h1 className="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-7xl dark:text-white">
+                <h1 className="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-7xl">
                   Ihr Partner für Tief- und Kabelbau seit 1978.
                 </h1>
-                <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:max-w-md sm:text-xl/8 lg:max-w-none dark:text-gray-400">
+                <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:max-w-md sm:text-xl/8 lg:max-w-none">
                   Wir sind ein familiengeführtes, mittelständisches
                   Bauunternehmen, gegründet im März 1978. Unsere Firma ist ein
                   leistungsfähiger Partner für Tiefbauleistungen mit besonderer
@@ -196,9 +196,9 @@ export function AboutUsPage() {
                     <img
                       alt=""
                       src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
-                      className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg dark:bg-gray-700/5"
+                      className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
-                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset dark:ring-white/10" />
+                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
                   </div>
                 </div>
                 <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
@@ -206,17 +206,17 @@ export function AboutUsPage() {
                     <img
                       alt=""
                       src="https://images.unsplash.com/photo-1485217988980-11786ced9454?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
-                      className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg dark:bg-gray-700/5"
+                      className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
-                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset dark:ring-white/10" />
+                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
                   </div>
                   <div className="relative">
                     <img
                       alt=""
                       src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-x=.4&w=396&h=528&q=80"
-                      className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg dark:bg-gray-700/5"
+                      className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
-                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset dark:ring-white/10" />
+                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
                   </div>
                 </div>
                 <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
@@ -224,17 +224,17 @@ export function AboutUsPage() {
                     <img
                       alt=""
                       src="https://images.unsplash.com/photo-1670272504528-790c24957dda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=left&w=400&h=528&q=80"
-                      className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg dark:bg-gray-700/5"
+                      className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
-                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset dark:ring-white/10" />
+                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
                   </div>
                   <div className="relative">
                     <img
                       alt=""
                       src="https://images.unsplash.com/photo-1670272505284-8faba1c31f7d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&h=528&q=80"
-                      className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg dark:bg-gray-700/5"
+                      className="aspect-2/3 w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
-                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset dark:ring-white/10" />
+                    <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
                   </div>
                 </div>
               </div>
@@ -246,16 +246,16 @@ export function AboutUsPage() {
         <img
           alt=""
           src={group1}
-          className="aspect-5/2 w-full object-cover outline-1 -outline-offset-1 outline-black/5 xl:rounded-3xl dark:outline-white/10"
+          className="aspect-5/2 w-full object-cover outline-1 -outline-offset-1 outline-black/5 xl:rounded-3xl"
         />
       </div>
 
       <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-48 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
+          <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
             Unser Team
           </h2>
-          <p className="mt-6 text-lg/8 text-gray-600 dark:text-gray-400">
+          <p className="mt-6 text-lg/8 text-gray-600">
             Unser Team besteht aus motivierten Bauprofis unterschiedlicher
             Generationen. Gemeinsam setzen wir Projekte zuverlässig, sicher und
             mit handwerklichem Können um.
@@ -270,14 +270,12 @@ export function AboutUsPage() {
               <img
                 alt=""
                 src={person.imageUrl}
-                className="mx-auto size-24 rounded-full outline-1 -outline-offset-1 outline-black/5 dark:outline-white/10"
+                className="mx-auto size-24 rounded-full outline-1 -outline-offset-1 outline-black/5"
               />
-              <h3 className="mt-6 text-base/7 font-semibold tracking-tight text-gray-900 dark:text-white">
+              <h3 className="mt-6 text-base/7 font-semibold tracking-tight text-gray-900">
                 {person.name}
               </h3>
-              <p className="text-sm/6 text-gray-600 dark:text-gray-400">
-                {person.role}
-              </p>
+              <p className="text-sm/6 text-gray-600">{person.role}</p>
             </li>
           ))}
         </ul>
@@ -289,10 +287,10 @@ export function AboutUsPage() {
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto flex max-w-2xl flex-col items-end justify-between gap-16 lg:mx-0 lg:max-w-none lg:flex-row">
             <div className="w-full lg:max-w-lg lg:flex-auto">
-              <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
+              <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
                 Werde teil unseres Teams
               </h2>
-              <p className="mt-6 text-xl/8 text-gray-600 dark:text-gray-400">
+              <p className="mt-6 text-xl/8 text-gray-600">
                 Zur Verstärkung unseres Teams suchen wir qualifizierte und
                 zuverlässige Mitarbeiterinnen und Mitarbeiter. Wir bieten Ihnen
                 eine sichere Anstellung, moderne Arbeitsbedingungen und
@@ -301,17 +299,17 @@ export function AboutUsPage() {
               <img
                 alt=""
                 src="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1344&h=1104&q=80"
-                className="mt-16 aspect-6/5 w-full rounded-2xl object-cover outline-1 -outline-offset-1 outline-black/5 lg:aspect-auto lg:h-138 dark:outline-white/10"
+                className="mt-16 aspect-6/5 w-full rounded-2xl object-cover outline-1 -outline-offset-1 outline-black/5 lg:aspect-auto lg:h-138"
               />
             </div>
             <div className="w-full lg:max-w-xl lg:flex-auto">
               <h3 className="sr-only">Job openings</h3>
-              <ul className="-my-8 divide-y divide-gray-100 dark:divide-gray-800">
+              <ul className="-my-8 divide-y divide-gray-100">
                 {jobOpenings.map(opening => (
                   <li key={opening.id} className="py-8">
                     <dl className="relative flex flex-wrap gap-x-3">
                       <dt className="sr-only">Role</dt>
-                      <dd className="w-full flex-none text-lg font-semibold tracking-tight text-gray-900 dark:text-white">
+                      <dd className="w-full flex-none text-lg font-semibold tracking-tight text-gray-900">
                         <Link href={opening.href}>
                           {opening.role}
                           <span
@@ -321,7 +319,7 @@ export function AboutUsPage() {
                         </Link>
                       </dd>
                       <dt className="sr-only">Description</dt>
-                      <dd className="mt-2 w-full flex-none text-base/7 text-gray-600 dark:text-gray-400">
+                      <dd className="mt-2 w-full flex-none text-base/7 text-gray-600">
                         {opening.description}
                       </dd>
                       <Link

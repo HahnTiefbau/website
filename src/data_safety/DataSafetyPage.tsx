@@ -9,37 +9,37 @@ export function DataSafetyPage() {
     <div className="min-h-screen bg-background-white-gray font-sans mt-12">
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="text-center mb-12">
-          <Text className="text-text text-4xl font-bold">
+          <Text className="text-text-900 text-4xl font-bold">
             {t('footer.data_safety')}
           </Text>
           <div className="w-24 h-1 mt-4 bg-accent-primary mx-auto rounded-full" />
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-          <Text className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-text sm:text-5xl">
+          <Text className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-text-900 sm:text-5xl">
             {t('data_safety_page.section_1_header')}
           </Text>
 
-          <Text className="mt-6 text-xl/8 text-text-secondary">
+          <Text className="mt-6 text-xl/8 text-text-700">
             {t('data_safety_page.section_1_text')}
           </Text>
           <Text className="mt-16 text-pretty text-3xl font-semibold tracking-tight text-text">
             {t('data_safety_page.section_2_header')}
           </Text>
-          <Text className="mt-6 text-text-secondary text-base/7">
+          <Text className="mt-6 text-text-700 text-base/7">
             {t('data_safety_page.section_2_text')}
           </Text>
           <address className="mt-6 not-italic text-gray-700 gap">
-            <Text className="mt-6 text-text-secondary text-base/7 font-semibold">
+            <Text className="mt-6 text-text-700 text-base/7 font-semibold">
               {t('general.company_name')}
             </Text>
-            <Text className="text-text-secondary text-base/7">
+            <Text className="text-text-700 text-base/7">
               {t('general.company_street')}
             </Text>
-            <Text className="text-text-secondary text-base/7">
+            <Text className="text-text-700 text-base/7">
               {t('general.company_city')}
             </Text>
-            <Text className="text-text-secondary text-base/7">
+            <Text className="text-text-700 text-base/7">
               {t('general.germany')}
             </Text>
             <Link href={`mailto:${t('company_email')}`}>
@@ -52,10 +52,10 @@ export function DataSafetyPage() {
             {t('data_safety_page.section_3_header')}
           </Text>
 
-          <Text className="mt-6 text-text-secondary text-base/7">
+          <Text className="mt-6 text-text-700 text-base/7">
             {t('data_safety_page.section_3_text_1')}
           </Text>
-          <Text className="mt-6 text-text-secondary text-base/7">
+          <Text className="mt-6 text-text-700 text-base/7">
             {t('data_safety_page.section_3_text_1_2')}
           </Text>
 
@@ -68,14 +68,12 @@ export function DataSafetyPage() {
               'data_safety_page.section_3_bullet_5',
             ].map((key, index) => (
               <li key={index}>
-                <Text className="text-text-secondary text-base/7">
-                  {t(key)}
-                </Text>
+                <Text className="text-text-700 text-base/7">{t(key)}</Text>
               </li>
             ))}
           </ul>
 
-          <Text className="mt-6 text-text-secondary text-base/7">
+          <Text className="mt-6 text-text-700 text-base/7">
             {t('data_safety_page.section_3_text_2')}
           </Text>
 
@@ -86,25 +84,40 @@ export function DataSafetyPage() {
               'data_safety_page.section_3_bullet_8',
             ].map((key, index) => (
               <li key={index}>
-                <Text className="text-text-secondary text-base/7">
-                  {t(key)}
-                </Text>
+                <Text className="text-text-700 text-base/7">{t(key)}</Text>
               </li>
             ))}
           </ul>
 
-          <Text className="mt-6 text-text-secondary text-base/7">
+          <Text className="mt-6 text-text-700 text-base/7">
             {t('data_safety_page.section_3_text_3')}
           </Text>
-          <Text className="mt-6 text-text-secondary text-base/7">
+          <Text className="mt-6 text-text-700 text-base/7">
             {t('data_safety_page.section_3_text_3_2')}
+          </Text>
+
+          <Text className="mt-16 text-pretty text-3xl font-semibold tracking-tight text-text">
+            {t('data_safety_page.section_6_header')}
+          </Text>
+
+          <Text className="mt-6 text-text-700 text-base/7">
+            {t('data_safety_page.section_6_text_1')}
+          </Text>
+          <Text className="mt-6 text-text-700 text-base/7">
+            {t('data_safety_page.section_6_text_2')}
+          </Text>
+          <Text className="mt-6 text-text-700 text-base/7">
+            {t('data_safety_page.section_6_text_3')}
+          </Text>
+          <Text className="mt-6 text-text-700 text-base/7">
+            {t('data_safety_page.section_6_text_4')}
           </Text>
 
           <Text className="mt-16 text-pretty text-3xl font-semibold tracking-tight text-text">
             {t('data_safety_page.section_4_header')}
           </Text>
 
-          <Text className="mt-6 text-text-secondary text-base/7">
+          <Text className="mt-6 text-text-700 text-base/7">
             {t('data_safety_page.section_4_text_1')}
           </Text>
 
@@ -126,7 +139,7 @@ export function DataSafetyPage() {
               return (
                 <li key={index}>
                   <Text
-                    className="mt-6 text-text-secondary text-base/7"
+                    className="mt-6 text-text-700 text-base/7"
                     dangerouslySetInnerHTML={{
                       __html: highlighted,
                     }}
@@ -135,7 +148,7 @@ export function DataSafetyPage() {
               );
             })}
           </ul>
-          <Text className="mt-6 text-text-secondary text-base/7">
+          <Text className="mt-6 text-text-700 text-base/7">
             {t('data_safety_page.section_4_text_2')}
           </Text>
 
@@ -143,10 +156,10 @@ export function DataSafetyPage() {
             {t('data_safety_page.section_5_header')}
           </Text>
 
-          <Text className="mt-6 text-text-secondary text-base/7">
+          <Text className="mt-6 text-text-700 text-base/7">
             {t('data_safety_page.section_5_text')}
           </Text>
-          <Text className="mt-6 text-text-secondary text-base/7">
+          <Text className="mt-6 text-text-700 text-base/7">
             {t('data_safety_page.section_5_text_2')}
           </Text>
         </div>

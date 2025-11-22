@@ -11,9 +11,16 @@
   --color-background-white-gray: #f8fafc;
   --color-accent-hover: rgba(96, 165, 250, 0.5);
   --color-primary-hover: rgba(9, 9, 11, 0.05);
-  --color-text: #111827;
-  --color-text-secondary: #374151;
-  --color-text-bright: #e5e7eb;
+  --color-text-900: #111827;
+  --color-text-800: #1f2937;
+  --color-text-700: #374151;
+  --color-text-600: #4b5563;
+  --color-text-500: #6b7280;
+  --color-text-400: #9ca3af;
+  --color-text-300: #d1d5db;
+  --color-text-200: #e5e7eb;
+  --color-text-100: #f3f4f6;
+  --color-text-50: #f9faffb;
 }
 
 @layer theme {
@@ -27,9 +34,16 @@
       --color-background-white-gray: #f8fafc;
       --color-accent-hover: rgba(96, 165, 250, 0.5);
       --color-primary-hover: rgba(9, 9, 11, 0.05);
-      --color-text: #111827;
-      --color-text-secondary: #374151;
-      --color-text-bright: #e5e7eb;
+      --color-text-900: #111827;
+      --color-text-800: #1f2937;
+      --color-text-700: #374151;
+      --color-text-600: #4b5563;
+      --color-text-500: #6b7280;
+      --color-text-400: #9ca3af;
+      --color-text-300: #d1d5db;
+      --color-text-200: #e5e7eb;
+      --color-text-100: #f3f4f6;
+      --color-text-50: #f9fafb;
     }
   }
 }

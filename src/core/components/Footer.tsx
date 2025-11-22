@@ -22,7 +22,7 @@ export function Footer() {
   const social_media = [
     {
       name: 'Instagram',
-      href: '#',
+      href: 'https://www.instagram.com/hahntiefbau/',
       icon: (props: SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -44,7 +44,7 @@ export function Footer() {
         >
           {items.map(item => (
             <Link key={item.name} href={item.href}>
-              <Text className="text-text-bright hover:text-white">
+              <Text className="text-text-200 hover:text-white">
                 {item.name}
               </Text>
             </Link>
@@ -55,13 +55,15 @@ export function Footer() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-text-bright hover:text-white"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-text-200 hover:text-white"
             >
               <item.icon aria-hidden="true" className="size-6" />
             </Link>
           ))}
         </div>
-        <Text className="mt-10 text-center text-sm/6 text-text-bright">
+        <Text className="mt-10 text-center text-sm/6 text-text-200">
           &copy; 2026 Ludwig Hahn Tief- & Kabelbau GmbH. All rights reserved.
         </Text>
       </div>
