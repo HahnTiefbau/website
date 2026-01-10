@@ -4,6 +4,7 @@ import netze_bw_logo from '../assets/netze_bw_logo_white.svg';
 import stadtwerke_lubu_logo from '../assets/stadtwerke_lubu_logo_white.svg';
 import telekom_logo from '../assets/telekom_logo_white.svg';
 import { Link } from '../../catalyst-components/link';
+import { useTranslation } from 'react-i18next';
 
 const blogPosts = [
   {
@@ -57,17 +58,16 @@ const blogPosts = [
 ];
 
 export function ReferencesPage() {
+  const { t } = useTranslation();
   return (
     <div className="relative isolate -z-10">
       <div className="mx-auto mt-32 max-w-7xl sm:mt-40 sm:px-6 lg:px-8">
         <div className="relative isolate overflow-hidden bg-background-gray px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
           <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Unsere Referenzen
+            {t('references.title')}
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg/8 text-gray-300">
-            Wir sind stolz darauf, seit vielen Jahren ein verlässlicher Partner
-            für Energieversorger, Telekommunikationsunternehmen und öffentliche
-            Auftraggeber zu sein.
+            {t('references.text')}
           </p>
           <div className="mx-auto mt-20 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 sm:gap-y-14 lg:max-w-4xl lg:grid-cols-5">
             <img
@@ -123,11 +123,10 @@ export function ReferencesPage() {
       <div className="mx-auto my-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
           <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">
-            Projekte
+            {t('references.projects_title')}
           </h2>
           <p className="mt-2 text-lg/8 text-gray-600">
-            Bekommen Sie Einblicke in Projekte, die wir für unsere Partner im
-            Energie- und Versorgungsnetz erfolgreich realisiert haben.
+            {t('references.projects_text')}
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">

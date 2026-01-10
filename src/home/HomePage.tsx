@@ -1,51 +1,46 @@
 import group2 from '../assets/group_2.jpg';
-import group3 from '../assets/group_3.jpg';
+import welcome_page_job_offers from '../assets/about_us_management.jpg';
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { Link } from '../../catalyst-components/link';
+import { useTranslation } from 'react-i18next';
 
 const benefits = [
-  'Faire Bezahlung',
-  'Betriebliche Zusatzleistungen',
-  '30 Tage Urlaub',
-  'Moderne Maschinen',
-  'Kollegiales Miteinander',
-  'Gemeinsame Team-Events',
+  'home.job_offers_point_1',
+  'home.job_offers_point_2',
+  'home.job_offers_point_3',
+  'home.job_offers_point_4',
+  'home.job_offers_point_5',
 ];
 
 const values = [
   {
-    name: 'Qualität & Präzision',
-    description:
-      'Wir arbeiten mit höchster Sorgfalt und nach modernsten Standards – denn im Bau zählt, was Bestand hat.',
+    name: 'home.values_quality_header',
+    description: 'home.values_quality_text',
   },
   {
-    name: 'Verlässlichkeit',
-    description:
-      'Unsere Kunden können sich darauf verlassen: Was wir zusagen, das halten wir. Termine und Qualität stehen an erster Stelle.',
+    name: 'home.values_reliability_header',
+    description: 'home.values_reliability_text',
   },
   {
-    name: 'Sicherheit',
-    description:
-      'Sicheres Arbeiten hat für uns oberste Priorität – für unsere Mitarbeitenden, Partner und die Umwelt.',
+    name: 'home.values_safety_header',
+    description: 'home.values_safety_text',
   },
   {
-    name: 'Teamgeist',
-    description:
-      'Erfolg entsteht gemeinsam. Wir unterstützen uns gegenseitig, packen an und finden immer eine Lösung.',
+    name: 'home.values_team_spirit_header',
+    description: 'home.values_team_spirit_text',
   },
   {
-    name: 'Nachhaltigkeit',
-    description:
-      'Wir denken weiter – ressourcenschonend, umweltbewusst und zukunftsorientiert in allem, was wir tun.',
+    name: 'home.values_sustainability_header',
+    description: 'home.values_sustainability_text',
   },
   {
-    name: 'Weiterentwicklung',
-    description:
-      'Stillstand ist keine Option. Wir investieren in moderne Technik und in die Ausbildung unseres Teams, um jeden Tag besser zu werden.',
+    name: 'home.values_development_header',
+    description: 'home.values_development_text',
   },
 ];
 
 export function HomePage() {
+  const { t } = useTranslation();
   return (
     <div className="relative isolate -z-10 overflow-hidden bg-linear-to-b from-accent-primary/15 pt-14">
       <div
@@ -55,15 +50,14 @@ export function HomePage() {
       <div className="mx-auto max-w-7xl px-6 pt-32 sm:pt-40 pb-16 sm:pb-24 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-8 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8">
           <h1 className="max-w-2xl text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl lg:col-span-2 xl:col-auto">
-            Willkommen bei Ludwig Hahn Tief- und Kabelbau
+            {t('home.welcome_header')}
           </h1>
           <div className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
             <p className="text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
-              Von Tiefbau über Kabelverlegung bis hin zu Glasfaserprojekten –
-              wir schaffen die technische Basis für digitale und urbane
-              Entwicklung. Mit moderner Technik, erfahrenem Team und hohem
-              Qualitätsanspruch realisieren wir Projekte termingerecht und
-              nachhaltig.
+              {t('home.welcome_text_1')}
+            </p>
+            <p className="text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
+              {t('home.welcome_text_2')}
             </p>
           </div>
           <img
@@ -77,19 +71,17 @@ export function HomePage() {
       <div className="mx-auto mt-8 max-w-7xl px-6 sm:mt-16 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
-            Unsere Werte
+            {t('home.values_header')}
           </h2>
           <p className="mt-6 text-lg/8 text-gray-700">
-            Bei uns steht der Mensch im Mittelpunkt – ob Kunde, Partner oder
-            Kollege. Gemeinsam schaffen wir nachhaltige Infrastruktur, auf die
-            man sich verlassen kann. Diese Werte leiten unser tägliches Handeln:
+            {t('home.values_text')}
           </p>
         </div>
         <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base/7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {values.map(value => (
             <div key={value.name}>
-              <dt className="font-semibold text-gray-900">{value.name}</dt>
-              <dd className="mt-1 text-gray-600">{value.description}</dd>
+              <dt className="font-semibold text-gray-900">{t(value.name)}</dt>
+              <dd className="mt-1 text-gray-600">{t(value.description)}</dd>
             </div>
           ))}
         </dl>
@@ -99,17 +91,15 @@ export function HomePage() {
           <div className="mx-auto flex max-w-2xl flex-col gap-16 bg-white/75 px-6 py-16 shadow-lg ring-1 ring-gray-900/5 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20">
             <img
               alt=""
-              src={group3}
+              src={welcome_page_job_offers}
               className="h-96 w-full flex-none rounded-2xl object-cover shadow-none lg:aspect-square lg:h-auto lg:max-w-sm"
             />
             <div className="w-full flex-auto">
               <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-950 sm:text-5xl">
-                Werde Teil unseres Teams
+                {t('home.job_offers_header')}
               </h2>
               <p className="mt-6 text-lg/8 text-pretty text-gray-600">
-                Bei uns erwarten dich spannende Aufgaben, ein motiviertes Team
-                und die Möglichkeit, gemeinsam zu wachsen. Entfalte dein
-                Potenzial und gestalte mit uns die Zukunft.
+                {t('home.job_offers_text')}
               </p>
               <ul
                 role="list"
@@ -121,7 +111,7 @@ export function HomePage() {
                       aria-hidden="true"
                       className="h-7 w-5 flex-none text-accent-primary"
                     />
-                    {benefit}
+                    {t(benefit)}
                   </li>
                 ))}
               </ul>
@@ -130,7 +120,7 @@ export function HomePage() {
                   href="/about?scroll=jobs"
                   className="text-sm/6 font-semibold text-accent-primary hover:text-orange-600"
                 >
-                  Siehe dir unsere Stellenangebote an
+                  {t('home.job_offers_look_job_offers')}
                   <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>

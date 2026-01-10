@@ -2,8 +2,10 @@ import { BuildingOffice2Icon, PhoneIcon } from '@heroicons/react/24/outline';
 import { EnvelopeIcon } from '@heroicons/react/24/solid';
 import { Button } from '../../catalyst-components/button';
 import { Link } from '../../catalyst-components/link';
+import { useTranslation } from 'react-i18next';
 
 export function ContactPage() {
+  const { t } = useTranslation();
   return (
     <div className="relative isolate -z-10">
       <div className="relative isolate bg-white">
@@ -61,22 +63,20 @@ export function ContactPage() {
                 </div>
               </div>
               <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
-                Kontaktieren Sie uns
+                {t('contact.title')}
               </h2>
               <p className="mt-6 text-lg/8 text-gray-600">
-                Kontaktieren Sie uns bei allgemeinen Fragen gerne telefonisch,
-                per E-Mail oder über das Kontaktformular – wir freuen uns auf
-                Ihre Nachricht. <br />
-                <br />
-                Für Bewerbungen auf eine unserer{' '}
+                {t('contact.text_1')}
+              </p>
+              <p className="mt-6 text-lg/8 text-gray-600">
+                {t('contact.text_2_1')}
                 <Link
                   href="/about?scroll=jobs"
                   className="font-semibold text-accent-primary hover:text-orange-600"
                 >
-                  offenen Stellen
+                  {t('contact.text_2_2')}
                 </Link>{' '}
-                verwenden Sie bitte das Bewerbungsformular bei der
-                entsprechenden Stelle, an der Sie Interesse haben.
+                {t('contact.text_2_3')}
               </p>
               <dl className="mt-10 space-y-4 text-base/7 text-gray-600">
                 <div className="flex gap-x-4">
@@ -132,19 +132,23 @@ export function ContactPage() {
               </dl>
             </div>
           </div>
+
           <form
             action="#"
             method="POST"
             className="px-6 pt-20 pb-24 sm:pb-32 lg:px-8 lg:py-48"
           >
             <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
-              <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+              <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
+                {t('contact.contact_form')}
+              </h2>
+              <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
                   <label
                     htmlFor="first-name"
                     className="block text-sm/6 font-semibold text-gray-900"
                   >
-                    First name
+                    {t('general.surname')}*
                   </label>
                   <div className="mt-2.5">
                     <input
@@ -152,7 +156,7 @@ export function ContactPage() {
                       name="first-name"
                       type="text"
                       autoComplete="given-name"
-                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
                   </div>
                 </div>
@@ -161,7 +165,7 @@ export function ContactPage() {
                     htmlFor="last-name"
                     className="block text-sm/6 font-semibold text-gray-900"
                   >
-                    Last name
+                    {t('general.last_name')}*
                   </label>
                   <div className="mt-2.5">
                     <input
@@ -169,7 +173,7 @@ export function ContactPage() {
                       name="last-name"
                       type="text"
                       autoComplete="family-name"
-                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
                   </div>
                 </div>
@@ -178,7 +182,7 @@ export function ContactPage() {
                     htmlFor="email"
                     className="block text-sm/6 font-semibold text-gray-900"
                   >
-                    Email
+                    {t('general.email')}*
                   </label>
                   <div className="mt-2.5">
                     <input
@@ -186,7 +190,7 @@ export function ContactPage() {
                       name="email"
                       type="email"
                       autoComplete="email"
-                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
                   </div>
                 </div>
@@ -195,7 +199,7 @@ export function ContactPage() {
                     htmlFor="phone-number"
                     className="block text-sm/6 font-semibold text-gray-900"
                   >
-                    Phone number
+                    {t('general.phone_number')}
                   </label>
                   <div className="mt-2.5">
                     <input
@@ -203,7 +207,7 @@ export function ContactPage() {
                       name="phone-number"
                       type="tel"
                       autoComplete="tel"
-                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
                   </div>
                 </div>
@@ -212,19 +216,21 @@ export function ContactPage() {
                     htmlFor="message"
                     className="block text-sm/6 font-semibold text-gray-900"
                   >
-                    Message
+                    {t('general.message')}*
                   </label>
-                  defaultValue={''}
                   <div className="mt-2.5">
                     <textarea
                       id="message"
                       name="message"
                       rows={6}
-                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+                      className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                       defaultValue={''}
                     />
                   </div>
                 </div>
+                <p className="text-xs/6 text-gray-900 -my-2">
+                  * {t('general.required_field')}
+                </p>
               </div>
               <div className="mt-8 flex justify-end">
                 <Button color={'orange'}>Nachricht senden</Button>

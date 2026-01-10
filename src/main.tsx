@@ -12,9 +12,7 @@ import { ServicesPage } from './services/ServicesPage';
 import { ReferencesPage } from './references/ReferencesPage';
 import { AboutUsPage } from './about_us/AboutUsPage';
 import { ContactPage } from './contact/ContactPage';
-import { Job1Page } from './jobs/Job1Page';
-import { Job3Page } from './jobs/Job3Page';
-import { Job2Page } from './jobs/Job2Page';
+import { JobPage } from './jobs/JobPage';
 
 const queryClient = new QueryClient();
 
@@ -52,16 +50,8 @@ const router = createBrowserRouter([
         element: <ContactPage />,
       },
       {
-        path: 'jobs/job1',
-        element: <Job1Page />,
-      },
-      {
-        path: 'jobs/job2',
-        element: <Job2Page />,
-      },
-      {
-        path: 'jobs/job3',
-        element: <Job3Page />,
+        path: 'jobs/:jobId',
+        element: <JobPage />,
       },
     ],
   },
