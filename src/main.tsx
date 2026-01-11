@@ -1,5 +1,6 @@
 import './index.css';
 import './i18n';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -13,6 +14,7 @@ import { ReferencesPage } from './references/ReferencesPage';
 import { AboutUsPage } from './about_us/AboutUsPage';
 import { ContactPage } from './contact/ContactPage';
 import { JobPage } from './jobs/JobPage';
+import { NotificationProvider } from './core/util/state/notification/NotificationProvider';
 
 const queryClient = new QueryClient();
 
@@ -61,10 +63,14 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <QueryClientProvider client={queryClient}>
-    <RouterProvider router={router} />
-    {import.meta.env.VITE_MODE === 'local' && (
-      <ReactQueryDevtools initialIsOpen={false} />
-    )}
-  </QueryClientProvider>
+  <React.StrictMode>
+    <NotificationProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        {import.meta.env.VITE_MODE === 'local' && (
+          <ReactQueryDevtools initialIsOpen={false} />
+        )}
+      </QueryClientProvider>
+    </NotificationProvider>
+  </React.StrictMode>
 );

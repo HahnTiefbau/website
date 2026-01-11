@@ -16,6 +16,8 @@ import {
   DropdownMenu,
 } from '../../../catalyst-components/dropdown';
 import Cookies from 'js-cookie';
+import { useNotifications } from '../util/state/notification/useNotification';
+import { CustomNotification } from './CustomNotification';
 
 const navigation = [
   { name: 'general.home', href: '/' },
@@ -31,6 +33,7 @@ function classNames(
 }
 
 export function NavigationLayout() {
+  const { notifications, removeNotification } = useNotifications();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -163,7 +166,7 @@ export function NavigationLayout() {
                   ))}
                 </div>
                 <div className="py-6">
-                  <SidebarItem>
+                  <SidebarItem key={'general.contact'} href={'/contact'}>
                     <Text>{t('general.contact')}</Text>
                   </SidebarItem>
                   <Dropdown>
@@ -209,6 +212,15 @@ export function NavigationLayout() {
       </header>
       <main className="isolate ">
         <Outlet />
+        {notifications.map(({ id, type, title, message, showTimeInMs }) => (
+          <CustomNotification
+            type={type}
+            header={title}
+            description={message}
+            showTimeInMs={showTimeInMs ?? 3000}
+            onClose={() => removeNotification(id)}
+          />
+        ))}
       </main>
     </div>
   );

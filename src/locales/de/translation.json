@@ -78,10 +78,12 @@
     "attachments_explanation": "Fügen Sie hier Ihren Lebenslauf, Anschreiben und ggfs. weitere Dokumente als PDF zu Ihrer Bewerbung hinzu. (Es können bis zu 5 Dateien hochgeladen werden, jeweils mit einer maximalen Größe von 5 MB)",
     "select_file": "Datei auswählen",
     "send_application": "Bewerbung abschicken",
+    "application": "Bewerbung",
     "required_field": "Pflichtfeld",
     "send_message": "Nachricht senden",
     "remove": "Entfernen",
-    "uploaded_files": "Hochgeladene Datei(en)"
+    "uploaded_files": "Hochgeladene Datei(en)",
+    "invalid_email": "Ungültige Email-Adresse"
   },
   "home": {
     "welcome_header": "Stark im Tief- und Kabelbau - seit 1978",
@@ -201,7 +203,7 @@
     "missing_staff_5": "<bold>Memcaj</bold> (Bauhilfsarbeiter)",
     "missing_staff_6": "<bold>Shan</bold> (Bauhilfsarbeiter)",
     "missing_staff_7": "<bold>Wohmann</bold> (Bauhilfsarbeiter)",
-    "become_part_header": "Werde teil unseres Teams",
+    "become_part_header": "Werde Teil unseres Teams",
     "become_part_text": "Zur Verstärkung unseres Teams suchen wir qualifizierte und zuverlässige Mitarbeiterinnen und Mitarbeiter. Wir bieten Ihnen eine sichere Anstellung, moderne Arbeitsbedingungen und abwechslungsreiche Projekte in der Region.",
     "job_offer_1": "LKW-Fahrer (m/w/d)",
     "job_offer_1_text": "Transport von Baumaterialien, Maschinen und Geräten zu unseren Baustellen sowie Unterstützung beim Be- und Entladen und Mitwirkung im Tiefbau-Team unter Einhaltung von Ordnung und Sicherheit.",
@@ -267,7 +269,9 @@
     "job_3_our_offer_item_2": "Leistungsorientierte Vergütung",
     "job_3_our_offer_item_3": "Moderne Maschinen und Fahrzeuge",
     "job_3_our_offer_item_4": "Kollegiales Arbeitsumfeld mit kurzen Entscheidungswegen",
-    "job_3_our_offer_item_5": "Weiterbildungsmöglichkeiten und Entwicklungsperspektiven"
+    "job_3_our_offer_item_5": "Weiterbildungsmöglichkeiten und Entwicklungsperspektiven",
+    "application_successfully_sent": "Vielen Dank, Ihre Bewerbung wurde erfolgreich gesendet.",
+    "application_could_not_be_sent": "Ihre Bewerbung konnte nicht gesendet werden. Bitte versuchen Sie es noch einmal."
   },
   "contact": {
     "title": "Kontaktieren Sie uns",
@@ -275,6 +279,8 @@
     "text_2_1": "Für Bewerbungen auf eine unserer",
     "text_2_2": " offenen Stellen ",
     "text_2_3": "verwenden Sie bitte das Bewerbungsformular bei der entsprechenden Stelle, an der Sie Interesse haben,",
-    "contact_form": "Kontaktformular"
+    "contact_form": "Kontaktformular",
+    "thanks_for_your_message": "Vielen Dank, Ihre Nachricht wurde erfolgreich übermittelt.",
+    "could_not_submit_message": "Ihre Nachricht konnte nicht übermittelt werden. Bitte versuchen Sie es noch einmal."
   }
 }

@@ -3,9 +3,88 @@ import { EnvelopeIcon } from '@heroicons/react/24/solid';
 import { Button } from '../../catalyst-components/button';
 import { Link } from '../../catalyst-components/link';
 import { useTranslation } from 'react-i18next';
+import { useMemo, useState } from 'react';
+import { useNotifications } from '../core/util/state/notification/useNotification';
+import { CircularProgressIndicator } from '../core/components/CircularProogressIndicator';
+
+type ContactFormState = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
+};
+
+const initialState: ContactFormState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  message: '',
+};
 
 export function ContactPage() {
   const { t } = useTranslation();
+  const { addNotification } = useNotifications();
+
+  const [form, setForm] = useState<ContactFormState>(initialState);
+  const [submittedOnce, setSubmittedOnce] = useState(false);
+
+  const [isSending, setIsSending] = useState(false);
+
+  const errors = useMemo(() => {
+    const e: Partial<Record<keyof ContactFormState, string>> = {};
+    if (!form.firstName.trim()) e.firstName = t('general.required_field');
+    if (!form.lastName.trim()) e.lastName = t('general.required_field');
+
+    if (!form.email.trim()) e.email = t('general.required_field');
+    else if (!/^\S+@\S+\.\S+$/.test(form.email))
+      e.email = t('general.invalid_email');
+
+    if (!form.message.trim()) e.message = t('general.required_field');
+    return e;
+  }, [form, t]);
+
+  function setField<K extends keyof ContactFormState>(
+    key: K,
+    value: ContactFormState[K]
+  ) {
+    setForm(prev => ({ ...prev, [key]: value }));
+  }
+
+  const isValid = Object.keys(errors).length === 0;
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (isSending) return;
+    setSubmittedOnce(true);
+    if (!isValid) return;
+
+    try {
+      setIsSending(true);
+      await new Promise(resolve => setTimeout(resolve, 500));
+      addNotification({
+        type: 'success',
+        title: t('contact.contact_form'),
+        message: t('contact.thanks_for_your_message'),
+        showTimeInMs: 4000,
+      });
+
+      setForm(initialState);
+      setSubmittedOnce(false);
+    } catch {
+      addNotification({
+        type: 'error',
+        title: t('contact.contact_form'),
+        message: t('contact.could_not_submit_message'),
+        showTimeInMs: 5000,
+      });
+    } finally {
+      setIsSending(false);
+    }
+  }
+
   return (
     <div className="relative isolate -z-10">
       <div className="relative isolate bg-white">
@@ -134,7 +213,7 @@ export function ContactPage() {
           </div>
 
           <form
-            action="#"
+            onSubmit={onSubmit}
             method="POST"
             className="px-6 pt-20 pb-24 sm:pb-32 lg:px-8 lg:py-48"
           >
@@ -156,8 +235,15 @@ export function ContactPage() {
                       name="first-name"
                       type="text"
                       autoComplete="given-name"
+                      value={form.firstName}
+                      onChange={e => setField('firstName', e.target.value)}
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
+                    {submittedOnce && errors.firstName && (
+                      <p className="mt-2 text-xs text-red-600">
+                        {errors.firstName}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div>
@@ -173,8 +259,15 @@ export function ContactPage() {
                       name="last-name"
                       type="text"
                       autoComplete="family-name"
+                      value={form.lastName}
+                      onChange={e => setField('lastName', e.target.value)}
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
+                    {submittedOnce && errors.lastName && (
+                      <p className="mt-2 text-xs text-red-600">
+                        {errors.lastName}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -190,8 +283,15 @@ export function ContactPage() {
                       name="email"
                       type="email"
                       autoComplete="email"
+                      value={form.email}
+                      onChange={e => setField('email', e.target.value)}
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
+                    {submittedOnce && errors.email && (
+                      <p className="mt-2 text-xs text-red-600">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -207,6 +307,8 @@ export function ContactPage() {
                       name="phone-number"
                       type="tel"
                       autoComplete="tel"
+                      value={form.phone}
+                      onChange={e => setField('phone', e.target.value)}
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
                   </div>
@@ -223,9 +325,15 @@ export function ContactPage() {
                       id="message"
                       name="message"
                       rows={6}
+                      value={form.message}
+                      onChange={e => setField('message', e.target.value)}
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
-                      defaultValue={''}
                     />
+                    {submittedOnce && errors.message && (
+                      <p className="mt-2 text-xs text-red-600">
+                        {errors.message}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <p className="text-xs/6 text-gray-900 -my-2">
@@ -233,7 +341,20 @@ export function ContactPage() {
                 </p>
               </div>
               <div className="mt-8 flex justify-end">
-                <Button color={'orange'}>Nachricht senden</Button>
+                <Button
+                  className="focus:outline-none"
+                  color={'orange'}
+                  type="submit"
+                >
+                  {isSending && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <CircularProgressIndicator />
+                    </div>
+                  )}
+                  <span className={isSending ? 'invisible' : ''}>
+                    {t('general.send_message')}
+                  </span>
+                </Button>
               </div>
             </div>
           </form>

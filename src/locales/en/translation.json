@@ -78,10 +78,12 @@
     "attachments_explanation": "Please upload your CV, cover letter, and, if applicable, additional documents as PDF for your application here. (Maximum of 5 files, each not exceeding 5 MB)",
     "select_file": "Select file",
     "send_application": "Submit application",
+    "application": "Application",
     "required_field": "Required field",
     "send_message": "Send message",
     "remove": "Remove",
-    "uploaded_files": "Uploaded file(s)"
+    "uploaded_files": "Uploaded file(s)",
+    "invalid_email": "Invalid email"
   },
   "home": {
     "welcome_header": "Strong in civil engineering and cable construction – since 1978",
@@ -267,7 +269,9 @@
     "job_3_our_offer_item_2": "Performance-based remuneration",
     "job_3_our_offer_item_3": "Modern machinery and vehicles",
     "job_3_our_offer_item_4": "A collegial working environment with short decision-making paths",
-    "job_3_our_offer_item_5": "Training opportunities and career development prospects"
+    "job_3_our_offer_item_5": "Training opportunities and career development prospects",
+    "application_successfully_sent": "Thank you, your application has been sent successfully.",
+    "application_could_not_be_sent": "Your application could not be sent. Please try again."
   },
   "contact": {
     "title": "Contact us",
@@ -275,6 +279,8 @@
     "text_2_1": "For applications to one of our",
     "text_2_2": " open positions ",
     "text_2_3": "please use the application form provided with the respective position you are interested in.",
-    "contact_form": "Contact form"
+    "contact_form": "Contact form",
+    "thanks_for_your_message": "Thank you, your message has been sent successfully.",
+    "could_not_submit_message": "Your message could not be sent. Please try again."
   }
 }

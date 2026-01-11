@@ -1,7 +1,7 @@
 import {
   BoltIcon,
-  CalendarDaysIcon,
-  UsersIcon,
+  MinusCircleIcon,
+  WrenchScrewdriverIcon,
 } from '@heroicons/react/24/outline';
 
 import machines1 from '../assets/machines_1.jpg';
@@ -14,17 +14,17 @@ const primaryFeatures = [
   {
     name: 'services.attribute_1_header',
     description: 'services.attribute_1_text',
-    icon: BoltIcon,
+    icon: WrenchScrewdriverIcon,
   },
   {
     name: 'services.attribute_2_header',
     description: 'services.attribute_2_text',
-    icon: UsersIcon,
+    icon: MinusCircleIcon,
   },
   {
     name: 'services.attribute_3_header',
     description: 'services.attribute_3_text',
-    icon: CalendarDaysIcon,
+    icon: BoltIcon,
   },
 ];
 

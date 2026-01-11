@@ -6,6 +6,8 @@ import job_2_img from '../assets/machines_4.jpg';
 import job_3_img from '../assets/machines_1.jpg';
 import { useParams } from 'react-router-dom';
 import { useState, useMemo } from 'react';
+import { useNotifications } from '../core/util/state/notification/useNotification';
+import { CircularProgressIndicator } from '../core/components/CircularProogressIndicator';
 
 const IMAGES: Record<string, string> = {
   job_1: job_1_img,
@@ -28,11 +30,85 @@ function isPdf(file: File) {
   return mimeOk || extOk;
 }
 
+type ApplicationFormState = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
+};
+
+const initialState: ApplicationFormState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  message: '',
+};
+
 export function JobPage() {
   const { t } = useTranslation();
   const { jobId } = useParams<{ jobId: string }>();
+  const { addNotification } = useNotifications();
 
   const [attachments, setAttachments] = useState<File[]>([]);
+  const [form, setForm] = useState<ApplicationFormState>(initialState);
+  const [submittedOnce, setSubmittedOnce] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+
+  const errors = useMemo(() => {
+    const e: Partial<Record<keyof ApplicationFormState, string>> = {};
+    if (!form.firstName.trim()) e.firstName = t('general.required_field');
+    if (!form.lastName.trim()) e.lastName = t('general.required_field');
+
+    if (!form.email.trim()) e.email = t('general.required_field');
+    else if (!/^\S+@\S+\.\S+$/.test(form.email))
+      e.email = t('general.invalid_email');
+
+    if (!form.message.trim()) e.message = t('general.required_field');
+    return e;
+  }, [form, t]);
+
+  const isValidForm = Object.keys(errors).length === 0;
+
+  function setField<K extends keyof ApplicationFormState>(
+    key: K,
+    value: ApplicationFormState[K]
+  ) {
+    setForm(prev => ({ ...prev, [key]: value }));
+  }
+
+  async function onSubmitApplication(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (isSending) return;
+    setSubmittedOnce(true);
+    if (!isValidForm) return;
+
+    try {
+      setIsSending(true);
+      await new Promise(resolve => setTimeout(resolve, 500));
+      addNotification({
+        type: 'success',
+        title: t('general.application'),
+        message: t('jobs.application_successfully_sent'),
+        showTimeInMs: 4000,
+      });
+
+      setForm(initialState);
+      setAttachments([]);
+      setSubmittedOnce(false);
+    } catch {
+      addNotification({
+        type: 'error',
+        title: t('general.application'),
+        message: t('jobs.application_could_not_be_sent'),
+        showTimeInMs: 5000,
+      });
+    } finally {
+      setIsSending(false);
+    }
+  }
 
   const onAttachmentsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = Array.from(e.target.files ?? []);
@@ -62,9 +138,9 @@ export function JobPage() {
     [attachments]
   );
 
-  const isValid = !!jobId && jobId in IMAGES;
+  const isValidRoute = !!jobId && jobId in IMAGES;
 
-  if (!isValid) {
+  if (!isValidRoute) {
     return (
       <div className="min-h-screen w-full flex items-center justify-center">
         <div className="text-center px-4">
@@ -101,7 +177,7 @@ export function JobPage() {
             <div className="mx-auto max-w-7xl px-6 py-32 sm:py-40 lg:px-8">
               <div className="mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-8 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8">
                 <div className="lg:col-span-2 xl:col-auto">
-                  <p className="text-sm/6 font-semibold text-accent-primary hover:text-orange-600">
+                  <p className="text-sm/6 font-bold text-accent-primary hover:text-orange-600">
                     {t('jobs.we_look_for_you')}
                   </p>
                   <h1 className="max-w-2xl text-5xl font-semibold tracking-tight text-balance text-gray-800 sm:text-7xl">
@@ -176,7 +252,7 @@ export function JobPage() {
             </h2>
           </div>
           <form
-            action="#"
+            onSubmit={onSubmitApplication}
             method="POST"
             className="mx-auto max-w-7xl px-6 lg:px-8 mt-12 sm:mt-16 pb-24 sm:pb-32"
           >
@@ -195,8 +271,15 @@ export function JobPage() {
                       name="first-name"
                       type="text"
                       autoComplete="given-name"
+                      value={form.firstName}
+                      onChange={e => setField('firstName', e.target.value)}
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
+                    {submittedOnce && errors.firstName && (
+                      <p className="mt-2 text-xs text-red-600">
+                        {errors.firstName}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div>
@@ -212,8 +295,15 @@ export function JobPage() {
                       name="last-name"
                       type="text"
                       autoComplete="family-name"
+                      value={form.lastName}
+                      onChange={e => setField('lastName', e.target.value)}
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
+                    {submittedOnce && errors.lastName && (
+                      <p className="mt-2 text-xs text-red-600">
+                        {errors.lastName}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -229,8 +319,15 @@ export function JobPage() {
                       name="email"
                       type="email"
                       autoComplete="email"
+                      value={form.email}
+                      onChange={e => setField('email', e.target.value)}
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
+                    {submittedOnce && errors.email && (
+                      <p className="mt-2 text-xs text-red-600">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -246,6 +343,8 @@ export function JobPage() {
                       name="phone-number"
                       type="tel"
                       autoComplete="tel"
+                      value={form.phone}
+                      onChange={e => setField('phone', e.target.value)}
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
                   </div>
@@ -262,9 +361,15 @@ export function JobPage() {
                       id="message"
                       name="message"
                       rows={6}
+                      value={form.message}
+                      onChange={e => setField('message', e.target.value)}
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
-                      defaultValue={''}
                     />
+                    {submittedOnce && errors.message && (
+                      <p className="mt-2 text-xs text-red-600">
+                        {errors.message}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -333,8 +438,19 @@ export function JobPage() {
                 </p>
               </div>
               <div className="mt-8 flex justify-end">
-                <Button color={'orange'}>
-                  {t('general.send_application')}
+                <Button
+                  className="focus:outline-none"
+                  color={'orange'}
+                  type="submit"
+                >
+                  {isSending && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <CircularProgressIndicator />
+                    </div>
+                  )}
+                  <span className={isSending ? 'invisible' : ''}>
+                    {t('general.send_application')}
+                  </span>
                 </Button>
               </div>
             </div>
