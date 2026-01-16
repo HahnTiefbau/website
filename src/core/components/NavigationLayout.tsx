@@ -59,10 +59,10 @@ export function NavigationLayout() {
         : i18n.language?.toUpperCase();
   return (
     <div className="bg-background-white-gray">
-      <header className="absolute inset-x-0 top-0 z-50">
+      <header className="sticky top-0 z-50 bg-background-white/85 backdrop-blur border-b border-text-900/10">
         <nav
           aria-label="Global"
-          className="flex items-center justify-between h-full p-6 lg:px-6 border-b border-text-900/10"
+          className="flex items-center justify-between h-full p-6 lg:px-6"
         >
           <div className="flex flex-row gap-20 items-center justify-between">
             <div className="flex lg:flex-1">

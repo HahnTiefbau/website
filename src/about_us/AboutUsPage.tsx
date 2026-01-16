@@ -20,6 +20,8 @@ import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Link } from '../../catalyst-components/link';
 import { Trans, useTranslation } from 'react-i18next';
+import { ListReveal } from '../core/components/ListReveal';
+import { Reveal } from '../core/components/Reveal';
 
 const teamManagement = [
   {
@@ -273,15 +275,26 @@ export function AboutUsPage() {
         <div className="overflow-hidden">
           <div className="mx-auto max-w-7xl px-6 pt-36 pb-32 sm:pt-60 lg:px-8 lg:pt-32">
             <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
-              <div className="relative w-full lg:max-w-xl lg:shrink-0 xl:max-w-2xl">
+              <Reveal
+                as="div"
+                from="left"
+                cacheKey="about-intro-block"
+                className="relative w-full lg:max-w-xl lg:shrink-0 xl:max-w-2xl"
+              >
                 <h1 className="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-7xl">
                   {t('about_us.intro_title')}
                 </h1>
                 <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:max-w-md sm:text-xl/8 lg:max-w-none">
                   {t('about_us.intro_text')}
                 </p>
-              </div>
-              <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+              </Reveal>
+
+              <Reveal
+                as="div"
+                from="right"
+                cacheKey="about-gallery-grid"
+                className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0"
+              >
                 <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-0 xl:pt-80">
                   <div className="relative">
                     <img
@@ -292,6 +305,7 @@ export function AboutUsPage() {
                     <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
                   </div>
                 </div>
+
                 <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                   <div className="relative">
                     <img
@@ -310,6 +324,7 @@ export function AboutUsPage() {
                     <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
                   </div>
                 </div>
+
                 <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                   <div className="relative">
                     <img
@@ -328,7 +343,7 @@ export function AboutUsPage() {
                     <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-gray-900/10 ring-inset" />
                   </div>
                 </div>
-              </div>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -342,17 +357,30 @@ export function AboutUsPage() {
       </div>
 
       <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-48 lg:px-8">
-        <div className="max-w-2xl lg:mx-0">
+        <Reveal
+          as="div"
+          from="left"
+          cacheKey="about-team-intro"
+          className="max-w-2xl lg:mx-0"
+        >
           <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
             {t('about_us.our_team_header')}
           </h2>
           <p className="mt-6 text-lg/8 text-gray-600">
             {t('about_us.our_team_text')}
           </p>
-        </div>
-        <h2 className="text-2xl mt-12 font-semibold tracking-tight text-pretty text-gray-900">
+        </Reveal>
+
+        <Reveal
+          as="h2"
+          from="up"
+          distance={0}
+          cacheKey="about-management-h2-fade"
+          className="text-2xl mt-12 font-semibold tracking-tight text-pretty text-gray-900"
+        >
           {t('about_us.management')}
-        </h2>
+        </Reveal>
+
         <ul
           role="list"
           className="
@@ -360,38 +388,51 @@ export function AboutUsPage() {
                 grid-cols-2 md:grid-cols-3 lg:grid-cols-3
               "
         >
-          {teamManagement.map(group => (
-            <li key={group.header}>
-              <div>
-                <dt className="mb-2 font-semibold text-gray-900">
-                  {t(group.header)}
-                </dt>
+          {teamManagement.map((group, i) => (
+            <ListReveal
+              key={group.header}
+              cacheKey={group.header}
+              delay={i * 0.08}
+            >
+              <li key={group.header}>
+                <div>
+                  <dt className="mb-2 font-semibold text-gray-900">
+                    {t(group.header)}
+                  </dt>
 
-                <img
-                  alt={group.header}
-                  src={group.image}
-                  className="w-full aspect-square rounded-2xl object-cover shadow-md"
-                />
+                  <img
+                    alt={group.header}
+                    src={group.image}
+                    className="w-full aspect-square rounded-2xl object-cover shadow-md"
+                  />
 
-                <dd className="mt-4 text-gray-600 text-left">
-                  <ul className="list-disc pl-5 space-y-1">
-                    {group.member.map(member => (
-                      <li key={member.text}>
-                        <Trans
-                          i18nKey={member.text}
-                          components={{ bold: <strong /> }}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </dd>
-              </div>
-            </li>
+                  <dd className="mt-4 text-gray-600 text-left">
+                    <ul className="list-disc pl-5 space-y-1">
+                      {group.member.map(member => (
+                        <li key={member.text}>
+                          <Trans
+                            i18nKey={member.text}
+                            components={{ bold: <strong /> }}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              </li>
+            </ListReveal>
           ))}
         </ul>
-        <h2 className="text-2xl mt-12 font-semibold tracking-tight text-pretty text-gray-900">
+        <Reveal
+          as="h2"
+          from="up"
+          distance={0}
+          cacheKey="about-convoys-h2-fade"
+          className="text-2xl mt-12 font-semibold tracking-tight text-pretty text-gray-900"
+        >
           {t('about_us.convoys')}
-        </h2>
+        </Reveal>
+
         <ul
           role="list"
           className="
@@ -399,46 +440,59 @@ export function AboutUsPage() {
                 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5
               "
         >
-          {convoys.map(convoy => (
-            <li key={convoy.header}>
-              <div>
-                <dt className="mb-2 font-semibold text-gray-900">
-                  {t(convoy.header)}
-                </dt>
-                <img
-                  alt={t(convoy.header)}
-                  src={convoy.image}
-                  className="w-full aspect-square rounded-2xl object-cover shadow-md"
-                />
-                <dd className="mt-3 text-gray-600 text-left">
-                  <ul className="list-disc pl-5 space-y-1">
-                    {convoy.member.map(member => (
-                      <li key={member.text}>
-                        <Trans
-                          i18nKey={member.text}
-                          components={{ bold: <strong /> }}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </dd>
-              </div>
-            </li>
+          {convoys.map((convoy, i) => (
+            <ListReveal
+              key={convoy.header}
+              cacheKey={convoy.header}
+              delay={i * 0.08}
+            >
+              <li key={convoy.header}>
+                <div>
+                  <dt className="mb-2 font-semibold text-gray-900">
+                    {t(convoy.header)}
+                  </dt>
+                  <img
+                    alt={t(convoy.header)}
+                    src={convoy.image}
+                    className="w-full aspect-square rounded-2xl object-cover shadow-md"
+                  />
+                  <dd className="mt-3 text-gray-600 text-left">
+                    <ul className="list-disc pl-5 space-y-1">
+                      {convoy.member.map(member => (
+                        <li key={member.text}>
+                          <Trans
+                            i18nKey={member.text}
+                            components={{ bold: <strong /> }}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              </li>
+            </ListReveal>
           ))}
         </ul>
         <p className="text-gray-600 mt-8">
           <span className="text-gray-600">{t('about_us.missing_header')}</span>
 
           {missing.map((item, index) => (
-            <span key={item.text}>
-              <Trans
-                i18nKey={item.text}
-                components={{
-                  bold: <strong className="font-semibold text-gray-600" />,
-                }}
-              />
-              {index < missing.length - 1 && ', '}
-            </span>
+            <ListReveal
+              key={item.text}
+              cacheKey={`missing-${item.text}`}
+              delay={index * 0.06}
+              className="inline"
+            >
+              <span>
+                <Trans
+                  i18nKey={item.text}
+                  components={{
+                    bold: <strong className="font-semibold text-gray-600" />,
+                  }}
+                />
+                {index < missing.length - 1 && ', '}
+              </span>
+            </ListReveal>
           ))}
         </p>
       </div>
@@ -448,7 +502,12 @@ export function AboutUsPage() {
       >
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto flex max-w-2xl flex-col items-end justify-between gap-16 lg:mx-0 lg:max-w-none lg:flex-row">
-            <div className="w-full lg:max-w-lg lg:flex-auto">
+            <Reveal
+              as="div"
+              from="left"
+              cacheKey="about-become-part-block"
+              className="w-full lg:max-w-lg lg:flex-auto"
+            >
               <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
                 {t('about_us.become_part_header')}
               </h2>
@@ -460,12 +519,21 @@ export function AboutUsPage() {
                 src={about_us_job_offers}
                 className="mt-16 w-full h-auto rounded-2xl outline-1 -outline-offset-1 outline-black/5"
               />
-            </div>
+            </Reveal>
+
             <div className="w-full lg:max-w-xl lg:flex-auto">
               <h3 className="sr-only">Job openings</h3>
               <ul className="-my-8 divide-y divide-gray-100">
-                {jobOffers.map(offer => (
-                  <li key={offer.text} className="py-8">
+                {jobOffers.map((offer, index) => (
+                  <Reveal
+                    key={offer.text}
+                    as="li"
+                    from="up"
+                    distance={0}
+                    delay={index * 0.08}
+                    cacheKey={`joboffer-${offer.href}`}
+                    className="py-8"
+                  >
                     <dl className="relative flex flex-wrap gap-x-3">
                       <dt className="sr-only">Role</dt>
                       <dd className="w-full flex-none text-lg font-semibold tracking-tight text-gray-900">
@@ -477,10 +545,12 @@ export function AboutUsPage() {
                           />
                         </Link>
                       </dd>
+
                       <dt className="sr-only">Description</dt>
                       <dd className="mt-2 w-full flex-none text-base/7 text-gray-600">
                         {t(offer.text)}
                       </dd>
+
                       <Link
                         href={offer.href}
                         className="text-sm/6 mt-2 font-semibold text-accent-primary"
@@ -489,7 +559,7 @@ export function AboutUsPage() {
                         <span aria-hidden="true">→</span>
                       </Link>
                     </dl>
-                  </li>
+                  </Reveal>
                 ))}
               </ul>
             </div>

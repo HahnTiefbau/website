@@ -2,9 +2,13 @@ import syna_logo from '../assets/syna_logo_white.svg';
 import kabel_bw_logo from '../assets/kabelbw_logo_white.svg';
 import netze_bw_logo from '../assets/netze_bw_logo_white.svg';
 import stadtwerke_lubu_logo from '../assets/stadtwerke_lubu_logo_white.svg';
+import spie_logo from '../assets/spie_logo_white.svg';
 import telekom_logo from '../assets/telekom_logo_white.svg';
+import stadtwerke_bk_logo from '../assets/stadtwerke_bk_logo_white.svg';
 import { Link } from '../../catalyst-components/link';
 import { useTranslation } from 'react-i18next';
+import { Reveal } from '../core/components/Reveal';
+import { ListReveal } from '../core/components/ListReveal';
 
 const blogPosts = [
   {
@@ -62,50 +66,71 @@ export function ReferencesPage() {
   return (
     <div className="relative isolate -z-10">
       <div className="mx-auto mt-32 max-w-7xl sm:mt-40 sm:px-6 lg:px-8">
-        <div className="relative isolate overflow-hidden bg-background-gray px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16">
+        <Reveal
+          from="up"
+          distance={0}
+          as="div"
+          cacheKey="logo-cloud"
+          className="relative isolate overflow-hidden bg-background-gray px-6 py-24 text-center shadow-2xl sm:rounded-3xl sm:px-16"
+        >
           <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
             {t('references.title')}
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg/8 text-gray-300">
+          <p className="mx-auto mt-6 max-w-4xl text-lg/8 text-gray-300">
             {t('references.text')}
           </p>
-          <div className="mx-auto mt-20 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 sm:gap-y-14 lg:max-w-4xl lg:grid-cols-5">
+          <div className="mx-auto mt-16 flex max-w-4xl flex-wrap items-center justify-center gap-x-16 gap-y-16">
             <img
               alt="Transistor"
               src={syna_logo}
               width={158}
               height={48}
-              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+              className="h-12 w-auto object-contain"
             />
             <img
               alt="Tuple"
               src={netze_bw_logo}
               width={158}
               height={48}
-              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+              className="h-12 w-auto object-contain"
+            />
+            <img
+              alt="Palakrat"
+              src={spie_logo}
+              width={158}
+              height={48}
+              className="h-12 w-auto object-contain"
             />
             <img
               alt="Reform"
               src={telekom_logo}
               width={158}
               height={48}
-              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+              className="h-12 w-auto object-contain"
             />
             <img
               alt="SavvyCal"
               src={kabel_bw_logo}
               width={158}
               height={48}
-              className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
+              className="h-8 w-auto object-contain"
             />
             <img
               alt="Statamic"
               src={stadtwerke_lubu_logo}
               width={158}
               height={48}
-              className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
+              className="h-12 w-auto object-contain"
+            />
+            <img
+              alt="Perplex"
+              src={stadtwerke_bk_logo}
+              width={158}
+              height={48}
+              className="h-12 w-auto object-contain"
             />
           </div>
+
           <div
             aria-hidden="true"
             className="absolute -top-24 right-0 -z-10 transform-gpu blur-3xl"
@@ -118,59 +143,70 @@ export function ReferencesPage() {
               className="aspect-1404/767 w-351 bg-linear-to-r from-[#f25c19] to-[#f25c19] opacity-50"
             />
           </div>
-        </div>
+        </Reveal>
       </div>
       <div className="mx-auto my-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+        <Reveal
+          as="div"
+          from="left"
+          cacheKey="references-projects-intro"
+          className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none"
+        >
           <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">
             {t('references.projects_title')}
           </h2>
           <p className="mt-2 text-lg/8 text-gray-600">
             {t('references.projects_text')}
           </p>
-        </div>
-        <div className="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {blogPosts.map(post => (
-            <article
-              key={post.id}
-              className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80"
-            >
-              <img
-                alt=""
-                src={post.imageUrl}
-                className="absolute inset-0 -z-10 size-full object-cover"
-              />
-              <div className="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40" />
-              <div className="absolute inset-0 -z-10 rounded-2xl inset-ring inset-ring-gray-900/10" />
+        </Reveal>
 
-              <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm/6 text-gray-300">
-                <time dateTime={post.datetime} className="mr-8">
-                  {post.date}
-                </time>
-                <div className="-ml-4 flex items-center gap-x-4">
-                  <svg
-                    viewBox="0 0 2 2"
-                    className="-ml-0.5 size-0.5 flex-none fill-white/50"
-                  >
-                    <circle r={1} cx={1} cy={1} />
-                  </svg>
-                  <div className="flex gap-x-2.5">
-                    <img
-                      alt=""
-                      src={post.author.imageUrl}
-                      className="size-6 flex-none rounded-full bg-white/10"
-                    />
-                    {post.author.name}
+        <div className="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+          {blogPosts.map((post, index) => (
+            <ListReveal
+              key={post.id}
+              cacheKey={`ref-post-${post.id}`}
+              delay={index * 0.08}
+              className="h-full"
+            >
+              <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80">
+                <img
+                  alt=""
+                  src={post.imageUrl}
+                  className="absolute inset-0 -z-10 size-full object-cover"
+                />
+                <div className="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40" />
+                <div className="absolute inset-0 -z-10 rounded-2xl inset-ring inset-ring-gray-900/10" />
+
+                <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm/6 text-gray-300">
+                  <time dateTime={post.datetime} className="mr-8">
+                    {post.date}
+                  </time>
+                  <div className="-ml-4 flex items-center gap-x-4">
+                    <svg
+                      viewBox="0 0 2 2"
+                      className="-ml-0.5 size-0.5 flex-none fill-white/50"
+                    >
+                      <circle r={1} cx={1} cy={1} />
+                    </svg>
+                    <div className="flex gap-x-2.5">
+                      <img
+                        alt=""
+                        src={post.author.imageUrl}
+                        className="size-6 flex-none rounded-full bg-white/10"
+                      />
+                      {post.author.name}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <h3 className="mt-3 text-lg/6 font-semibold text-white">
-                <Link href={post.href}>
-                  <span className="absolute inset-0" />
-                  {post.title}
-                </Link>
-              </h3>
-            </article>
+
+                <h3 className="mt-3 text-lg/6 font-semibold text-white">
+                  <Link href={post.href}>
+                    <span className="absolute inset-0" />
+                    {post.title}
+                  </Link>
+                </h3>
+              </article>
+            </ListReveal>
           ))}
         </div>
       </div>

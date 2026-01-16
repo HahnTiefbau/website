@@ -8,6 +8,8 @@ import { useParams } from 'react-router-dom';
 import { useState, useMemo } from 'react';
 import { useNotifications } from '../core/util/state/notification/useNotification';
 import { CircularProgressIndicator } from '../core/components/CircularProogressIndicator';
+import { Reveal } from '../core/components/Reveal';
+import { ListReveal } from '../core/components/ListReveal';
 
 const IMAGES: Record<string, string> = {
   job_1: job_1_img,
@@ -176,22 +178,39 @@ export function JobPage() {
           <div className="mx-auto relative isolate -z-10 overflow-hidden pt-14">
             <div className="mx-auto max-w-7xl px-6 py-32 sm:py-40 lg:px-8">
               <div className="mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-8 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8">
-                <div className="lg:col-span-2 xl:col-auto">
+                <Reveal
+                  as="div"
+                  from="left"
+                  cacheKey={`jobs-${jobId}-headline`}
+                  className="lg:col-span-2 xl:col-auto"
+                >
                   <p className="text-sm/6 font-bold text-accent-primary hover:text-orange-600">
                     {t('jobs.we_look_for_you')}
                   </p>
                   <h1 className="max-w-2xl text-5xl font-semibold tracking-tight text-balance text-gray-800 sm:text-7xl">
                     {t(headerKey)}
                   </h1>
-                </div>
-                <div className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
+                </Reveal>
+
+                <Reveal
+                  as="div"
+                  from="left"
+                  delay={0.12}
+                  cacheKey={`jobs-${jobId}-text`}
+                  className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1"
+                >
                   <p className="text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
                     {t(textKey)}
                   </p>
-                </div>
-                <img
-                  alt=""
+                </Reveal>
+
+                <Reveal
+                  as="img"
+                  from="right"
+                  delay={0.18}
+                  cacheKey={`jobs-${jobId}-image`}
                   src={IMAGES[jobId]}
+                  alt=""
                   className="mt-10 aspect-6/5 w-full max-w-2xl rounded-2xl object-cover outline-1 -outline-offset-1 outline-white/10 sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-36"
                 />
               </div>
@@ -200,7 +219,12 @@ export function JobPage() {
           </div>
 
           <div className="mx-auto max-w-7xl grid mt-12 sm:mt-16 grid-cols-1 gap-16 lg:grid-cols-2 px-6 sm:px-8">
-            <div>
+            <Reveal
+              as="div"
+              from="up"
+              distance={0}
+              cacheKey="jobs-section-todos"
+            >
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-accent-primary sm:text-3xl">
                 {t('jobs.your_todos')}
               </h2>
@@ -208,14 +232,25 @@ export function JobPage() {
                 role="list"
                 className="mt-4 list-disc pl-5 grid grid-cols-1 gap-x-8 gap-y-3 text-base/7"
               >
-                {todos.map(todo => (
-                  <li key={todo} className="text-gray-600">
-                    {t(todo)}
-                  </li>
+                {todos.map((todo, index) => (
+                  <ListReveal
+                    key={todo}
+                    cacheKey={`jobs-todo-${todo}`}
+                    delay={index * 0.06}
+                  >
+                    <li className="text-gray-600">{t(todo)}</li>
+                  </ListReveal>
                 ))}
               </ul>
-            </div>
-            <div>
+            </Reveal>
+
+            <Reveal
+              as="div"
+              from="up"
+              distance={0}
+              delay={0.08}
+              cacheKey="jobs-section-profile"
+            >
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-accent-primary sm:text-3xl">
                 {t('jobs.your_profile')}
               </h2>
@@ -223,14 +258,25 @@ export function JobPage() {
                 role="list"
                 className="mt-4 list-disc pl-5 grid grid-cols-1 gap-x-8 gap-y-3 text-base/7"
               >
-                {profiles.map(profile => (
-                  <li key={profile} className="text-gray-600">
-                    {t(profile)}
-                  </li>
+                {profiles.map((profile, index) => (
+                  <ListReveal
+                    key={profile}
+                    cacheKey={`jobs-profile-${profile}`}
+                    delay={index * 0.06}
+                  >
+                    <li className="text-gray-600">{t(profile)}</li>
+                  </ListReveal>
                 ))}
               </ul>
-            </div>
-            <div>
+            </Reveal>
+
+            <Reveal
+              as="div"
+              from="up"
+              distance={0}
+              delay={0.16}
+              cacheKey="jobs-section-offer"
+            >
               <h2 className="mt-4 text-2xl font-semibold tracking-tight text-accent-primary sm:text-3xl">
                 {t('jobs.our_offer')}
               </h2>
@@ -238,20 +284,35 @@ export function JobPage() {
                 role="list"
                 className="mt-4 list-disc pl-5 grid grid-cols-1 gap-x-8 gap-y-3 text-base/7"
               >
-                {benefits.map(benefit => (
-                  <li key={benefit} className="text-gray-600">
-                    {t(benefit)}
-                  </li>
+                {benefits.map((benefit, index) => (
+                  <ListReveal
+                    key={benefit}
+                    cacheKey={`jobs-benefit-${benefit}`}
+                    delay={index * 0.06}
+                  >
+                    <li className="text-gray-600">{t(benefit)}</li>
+                  </ListReveal>
                 ))}
               </ul>
-            </div>
+            </Reveal>
           </div>
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-24">
+
+          <Reveal
+            as="div"
+            from="left"
+            cacheKey="jobs-apply-now"
+            className="mx-auto max-w-7xl px-6 lg:px-8 mt-24"
+          >
             <h2 className="text-5xl font-semibold tracking-tight text-gray-800 sm:text-6xl">
               {t('jobs.apply_now')}
             </h2>
-          </div>
-          <form
+          </Reveal>
+
+          <Reveal
+            as="form"
+            from="up"
+            distance={0}
+            cacheKey="contact-form"
             onSubmit={onSubmitApplication}
             method="POST"
             className="mx-auto max-w-7xl px-6 lg:px-8 mt-12 sm:mt-16 pb-24 sm:pb-32"
@@ -454,7 +515,7 @@ export function JobPage() {
                 </Button>
               </div>
             </div>
-          </form>
+          </Reveal>
         </div>
       </div>
     </div>

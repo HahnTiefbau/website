@@ -3,6 +3,8 @@ import welcome_page_job_offers from '../assets/about_us_management.jpg';
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { Link } from '../../catalyst-components/link';
 import { useTranslation } from 'react-i18next';
+import { ListReveal } from '../core/components/ListReveal';
+import { Reveal } from '../core/components/Reveal';
 
 const benefits = [
   'home.job_offers_point_1',
@@ -49,45 +51,77 @@ export function HomePage() {
       />
       <div className="mx-auto max-w-7xl px-6 pt-32 sm:pt-40 pb-16 sm:pb-24 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-8 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8">
-          <h1 className="max-w-2xl text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl lg:col-span-2 xl:col-auto">
+          <Reveal
+            as="h1"
+            from="up"
+            cacheKey="home-hero-h1"
+            className="max-w-2xl text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl lg:col-span-2 xl:col-auto"
+          >
             {t('home.welcome_header')}
-          </h1>
-          <div className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
+          </Reveal>
+
+          <Reveal
+            as="div"
+            from="left"
+            delay={0.15}
+            cacheKey="home-hero-text"
+            className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1"
+          >
             <p className="text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
               {t('home.welcome_text_1')}
             </p>
             <p className="text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
               {t('home.welcome_text_2')}
             </p>
-          </div>
-          <img
-            alt=""
+          </Reveal>
+
+          <Reveal
+            as="img"
+            from="right"
+            delay={0.25}
+            cacheKey="home-hero-image"
             src={group2}
+            alt=""
             className="mt-10 aspect-6/5 w-full max-w-lg rounded-2xl object-cover outline-1 -outline-offset-1 outline-black/5 sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-36"
           />
         </div>
       </div>
       <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-linear-to-t from-white sm:h-32" />
       <div className="mx-auto mt-8 max-w-7xl px-6 sm:mt-16 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:mx-0">
+        <Reveal
+          as="div"
+          from="left"
+          cacheKey="home-values-block"
+          className="mx-auto max-w-2xl lg:mx-0"
+        >
           <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
             {t('home.values_header')}
           </h2>
           <p className="mt-6 text-lg/8 text-gray-700">
             {t('home.values_text')}
           </p>
-        </div>
+        </Reveal>
+
         <dl className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 text-base/7 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {values.map(value => (
-            <div key={value.name}>
-              <dt className="font-semibold text-gray-900">{t(value.name)}</dt>
-              <dd className="mt-1 text-gray-600">{t(value.description)}</dd>
-            </div>
+          {values.map((value, i) => (
+            <ListReveal key={value.name} cacheKey={value.name} delay={i * 0.08}>
+              <div>
+                <dt className="font-semibold text-gray-900">{t(value.name)}</dt>
+                <dd className="mt-1 text-gray-600">{t(value.description)}</dd>
+              </div>
+            </ListReveal>
           ))}
         </dl>
       </div>
       <div className="relative isolate -z-10 mb-32 mt-32 sm:mt-40">
-        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <Reveal
+          as="div"
+          from="up"
+          distance={0}
+          duration={0.75}
+          cacheKey="home-joboffers-card"
+          className="mx-auto max-w-7xl sm:px-6 lg:px-8"
+        >
           <div className="mx-auto flex max-w-2xl flex-col gap-16 bg-white/75 px-6 py-16 shadow-lg ring-1 ring-gray-900/5 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20">
             <img
               alt=""
@@ -126,7 +160,7 @@ export function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
         <div
           aria-hidden="true"
           className="absolute inset-x-0 -top-16 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl"

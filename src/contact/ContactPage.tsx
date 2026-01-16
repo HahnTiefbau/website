@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useMemo, useState } from 'react';
 import { useNotifications } from '../core/util/state/notification/useNotification';
 import { CircularProgressIndicator } from '../core/components/CircularProogressIndicator';
+import { Reveal } from '../core/components/Reveal';
 
 type ContactFormState = {
   firstName: string;
@@ -141,78 +142,94 @@ export function ContactPage() {
                   />
                 </div>
               </div>
-              <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
-                {t('contact.title')}
-              </h2>
-              <p className="mt-6 text-lg/8 text-gray-600">
-                {t('contact.text_1')}
-              </p>
-              <p className="mt-6 text-lg/8 text-gray-600">
-                {t('contact.text_2_1')}
-                <Link
-                  href="/about?scroll=jobs"
-                  className="font-semibold text-accent-primary hover:text-orange-600"
-                >
-                  {t('contact.text_2_2')}
-                </Link>{' '}
-                {t('contact.text_2_3')}
-              </p>
-              <dl className="mt-10 space-y-4 text-base/7 text-gray-600">
-                <div className="flex gap-x-4">
-                  <dt className="flex-none">
-                    <span className="sr-only">Address</span>
-                    <BuildingOffice2Icon
-                      aria-hidden="true"
-                      className="h-7 w-6 text-accent-primary"
-                    />
-                  </dt>
-                  <dd>
-                    Ludwig Hahn Tief- & Kabelbau GmbH
-                    <br />
-                    Winnender Str. 1
-                    <br />
-                    71522 Backnang
-                  </dd>
-                </div>
-                <div className="flex gap-x-4">
-                  <dt className="flex-none">
-                    <span className="sr-only">Telephone</span>
-                    <PhoneIcon
-                      aria-hidden="true"
-                      className="h-7 w-6 text-accent-primary"
-                    />
-                  </dt>
-                  <dd>
-                    <Link
-                      href="tel: 07191 32220"
-                      className="text-accent-primary hover:text-orange-600"
-                    >
-                      07191 32220
-                    </Link>
-                  </dd>
-                </div>
-                <div className="flex gap-x-4">
-                  <dt className="flex-none">
-                    <span className="sr-only">Email</span>
-                    <EnvelopeIcon
-                      aria-hidden="true"
-                      className="h-7 w-6 text-accent-primary"
-                    />
-                  </dt>
-                  <dd>
-                    <Link
-                      href="mailto:info@hahn-tief-kabelbau.de"
-                      className="text-accent-primary hover:text-orange-600"
-                    >
-                      info@hahn-tief-kabelbau.de
-                    </Link>
-                  </dd>
-                </div>
-              </dl>
+              <Reveal
+                as="div"
+                from="up"
+                distance={0}
+                cacheKey="contact-left-block-fade"
+              >
+                <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
+                  {t('contact.title')}
+                </h2>
+
+                <p className="mt-6 text-lg/8 text-gray-600">
+                  {t('contact.text_1')}
+                </p>
+
+                <p className="mt-6 text-lg/8 text-gray-600">
+                  {t('contact.text_2_1')}
+                  <Link
+                    href="/about?scroll=jobs"
+                    className="font-semibold text-accent-primary hover:text-orange-600"
+                  >
+                    {t('contact.text_2_2')}
+                  </Link>{' '}
+                  {t('contact.text_2_3')}
+                </p>
+
+                <dl className="mt-10 space-y-4 text-base/7 text-gray-600">
+                  <div className="flex gap-x-4">
+                    <dt className="flex-none">
+                      <span className="sr-only">Address</span>
+                      <BuildingOffice2Icon
+                        aria-hidden="true"
+                        className="h-7 w-6 text-accent-primary"
+                      />
+                    </dt>
+                    <dd>
+                      Ludwig Hahn Tief- &amp; Kabelbau GmbH
+                      <br />
+                      Winnender Str. 1
+                      <br />
+                      71522 Backnang
+                    </dd>
+                  </div>
+
+                  <div className="flex gap-x-4">
+                    <dt className="flex-none">
+                      <span className="sr-only">Telephone</span>
+                      <PhoneIcon
+                        aria-hidden="true"
+                        className="h-7 w-6 text-accent-primary"
+                      />
+                    </dt>
+                    <dd>
+                      <Link
+                        href="tel: 07191 32220"
+                        className="text-accent-primary hover:text-orange-600"
+                      >
+                        07191 32220
+                      </Link>
+                    </dd>
+                  </div>
+
+                  <div className="flex gap-x-4">
+                    <dt className="flex-none">
+                      <span className="sr-only">Email</span>
+                      <EnvelopeIcon
+                        aria-hidden="true"
+                        className="h-7 w-6 text-accent-primary"
+                      />
+                    </dt>
+                    <dd>
+                      <Link
+                        href="mailto:info@hahn-tief-kabelbau.de"
+                        className="text-accent-primary hover:text-orange-600"
+                      >
+                        info@hahn-tief-kabelbau.de
+                      </Link>
+                    </dd>
+                  </div>
+                </dl>
+              </Reveal>
             </div>
           </div>
 
-          <form
+          <Reveal
+            as="form"
+            from="up"
+            distance={0}
+            cacheKey="contact-form"
             onSubmit={onSubmit}
             method="POST"
             className="px-6 pt-20 pb-24 sm:pb-32 lg:px-8 lg:py-48"
@@ -221,6 +238,7 @@ export function ContactPage() {
               <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
                 {t('contact.contact_form')}
               </h2>
+
               <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
                   <label
@@ -246,6 +264,7 @@ export function ContactPage() {
                     )}
                   </div>
                 </div>
+
                 <div>
                   <label
                     htmlFor="last-name"
@@ -270,6 +289,7 @@ export function ContactPage() {
                     )}
                   </div>
                 </div>
+
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="email"
@@ -294,6 +314,7 @@ export function ContactPage() {
                     )}
                   </div>
                 </div>
+
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="phone-number"
@@ -313,6 +334,7 @@ export function ContactPage() {
                     />
                   </div>
                 </div>
+
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="message"
@@ -336,14 +358,16 @@ export function ContactPage() {
                     )}
                   </div>
                 </div>
+
                 <p className="text-xs/6 text-gray-900 -my-2">
                   * {t('general.required_field')}
                 </p>
               </div>
+
               <div className="mt-8 flex justify-end">
                 <Button
                   className="focus:outline-none"
-                  color={'orange'}
+                  color="orange"
                   type="submit"
                 >
                   {isSending && (
@@ -357,7 +381,7 @@ export function ContactPage() {
                 </Button>
               </div>
             </div>
-          </form>
+          </Reveal>
         </div>
       </div>
     </div>
