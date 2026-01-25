@@ -103,7 +103,7 @@ export const SidebarItem = forwardRef(function SidebarItem(
   )
 
   return (
-    <span className={clsx(className, 'relative')}>
+    <span className={clsx(className, 'relative block')}>
       {current && (
         <motion.span
           layoutId="current-indicator"

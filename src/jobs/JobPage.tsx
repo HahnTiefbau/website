@@ -175,8 +175,8 @@ export function JobPage() {
     <div className="relative isolate -z-10">
       <div className="isolate bg-white">
         <div className="min-h-screen">
-          <div className="mx-auto relative isolate -z-10 overflow-hidden pt-14">
-            <div className="mx-auto max-w-7xl px-6 py-32 sm:py-40 lg:px-8">
+          <div className="mx-auto relative isolate -z-10 overflow-hidden">
+            <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
               <div className="mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-8 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8">
                 <Reveal
                   as="div"

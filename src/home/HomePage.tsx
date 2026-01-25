@@ -49,7 +49,7 @@ export function HomePage() {
         aria-hidden="true"
         className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-sm ring-1 ring-accent-primary/10 sm:-mr-80 lg:-mr-96"
       />
-      <div className="mx-auto max-w-7xl px-6 pt-32 sm:pt-40 pb-16 sm:pb-24 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 pt-16 sm:pt-24 pb-16 sm:pb-24 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-8 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8">
           <Reveal
             as="h1"

@@ -273,7 +273,7 @@ export function AboutUsPage() {
           />
         </div>
         <div className="overflow-hidden">
-          <div className="mx-auto max-w-7xl px-6 pt-36 pb-32 sm:pt-60 lg:px-8 lg:pt-32">
+          <div className="mx-auto max-w-7xl px-6 pt-30 pb-32 sm:pt-38 lg:px-8 lg:pt-40">
             <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
               <Reveal
                 as="div"

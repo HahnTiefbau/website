@@ -44,14 +44,14 @@ export function ServicesPage() {
   const { t } = useTranslation();
   return (
     <div className="relative isolate -z-10">
-      <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8">
+      <div className="mx-auto mt-30 max-w-7xl px-6 sm:mt-38 lg:px-8">
         <Reveal
           as="div"
           from="up"
           cacheKey="services-intro-block"
           className="mx-auto max-w-2xl lg:text-center"
         >
-          <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl lg:text-balance">
+          <p className="mt-2 text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-7xl lg:text-balance">
             {t('services.intro_header')}
           </p>
           <p className="mt-6 text-lg/8 text-gray-600">

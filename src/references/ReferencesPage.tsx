@@ -65,7 +65,7 @@ export function ReferencesPage() {
   const { t } = useTranslation();
   return (
     <div className="relative isolate -z-10">
-      <div className="mx-auto mt-32 max-w-7xl sm:mt-40 sm:px-6 lg:px-8">
+      <div className="mx-auto mt-24 max-w-7xl sm:mt-32 sm:px-6 lg:px-8">
         <Reveal
           from="up"
           distance={0}

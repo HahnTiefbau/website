@@ -1,5 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import { Dialog, DialogPanel } from '@headlessui/react';
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  TransitionChild,
+} from '@headlessui/react';
 import { Link } from '../../../catalyst-components/link';
 import { Text } from '../../../catalyst-components/text';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -139,17 +144,40 @@ export function NavigationLayout() {
           onClose={setMobileMenuOpen}
           className="lg:hidden"
         >
-          <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-4 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <DialogBackdrop
+            transition
+            className="
+                fixed inset-0 z-[60] bg-black/30
+                transition-opacity duration-300 ease-out
+                data-[closed]:opacity-0
+              "
+          />
+          <DialogPanel
+            transition
+            className="
+                fixed inset-y-0 right-0 z-[70] w-full overflow-y-auto bg-white p-4
+                sm:max-w-sm sm:ring-1 sm:ring-gray-900/10
+
+                transform transition duration-300 ease-out will-change-transform
+                data-[closed]:translate-x-full data-[closed]:opacity-0
+                data-[leave]:duration-200 data-[leave]:ease-in
+              "
+          >
             <div className="flex items-center justify-between">
-              <Link href={'/'} className="pt-0.25">
-                <img alt="" src={logo} className="h-12 w-auto" />
-                <img
-                  alt=""
-                  src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                  className="h-8 w-auto not-dark:hidden"
-                />
-              </Link>
+              <TransitionChild
+                as="div"
+                enter="transition-opacity delay-50 ease-out"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition-opacity duration-0"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+                className="motion-reduce:transition-none motion-reduce:delay-0"
+              >
+                <Link href={'/'} className="pt-0.25">
+                  <img alt="" src={logo} className="h-12 w-auto" />
+                </Link>
+              </TransitionChild>
               <NavbarItem onClick={() => setMobileMenuOpen(false)}>
                 <span className="flex-none h-6 w-6">
                   <XMarkIcon aria-hidden="true" className="size-6" />
@@ -159,14 +187,31 @@ export function NavigationLayout() {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  {navigation.map(item => (
-                    <SidebarItem key={item.name} href={item.href}>
-                      <Text>{t(item.name)}</Text>
-                    </SidebarItem>
-                  ))}
+                  {navigation.map(item => {
+                    const isCurrent =
+                      location.pathname === item.href ||
+                      (item.href !== '/' &&
+                        location.pathname.startsWith(item.href));
+                    return (
+                      <SidebarItem
+                        key={item.name}
+                        href={item.href}
+                        current={isCurrent}
+                      >
+                        <Text>{t(item.name)}</Text>
+                      </SidebarItem>
+                    );
+                  })}
                 </div>
                 <div className="py-6">
-                  <SidebarItem key={'general.contact'} href={'/contact'}>
+                  <SidebarItem
+                    key={'general.contact'}
+                    href={'/contact'}
+                    current={
+                      location.pathname === '/contact' ||
+                      location.pathname.startsWith('/contact')
+                    }
+                  >
                     <Text>{t('general.contact')}</Text>
                   </SidebarItem>
                   <Dropdown>
