@@ -8,7 +8,7 @@ require __DIR__ . '/PHPMailer/src/Exception.php';
 require __DIR__ . '/PHPMailer/src/PHPMailer.php';
 require __DIR__ . '/PHPMailer/src/SMTP.php';
 
-$secrets = require __DIR__ . '/../../config/secrets.php';
+$secrets = require '/usr/home/rvsfiy/config/secrets.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
