@@ -83,7 +83,11 @@
     "send_message": "Send message",
     "remove": "Remove",
     "uploaded_files": "Uploaded file(s)",
-    "invalid_email": "Invalid email"
+    "invalid_email": "Invalid email",
+    "file_upload": "File upload",
+    "max_allowed_files_5": "A maximum of 5 PDF files is allowed.",
+    "file_too_big": "One or more files are too large (max. 5 MB per file).",
+    "too_much_requests_wait": "Too many requests. Please try again in 10 minutes."
   },
   "home": {
     "welcome_header": "Strong in civil engineering and cable construction – since 1978",

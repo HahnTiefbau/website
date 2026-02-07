@@ -86,7 +86,8 @@
     "invalid_email": "Ungültige Email-Adresse",
     "file_upload": "Dateiupload",
     "max_allowed_files_5": "Maximal 5 PDF-Dateien erlaubt.",
-    "file_too_big": "Eine oder mehrere Dateien sind zu groß (max. 5 MB pro Datei)."
+    "file_too_big": "Eine oder mehrere Dateien sind zu groß (max. 5 MB pro Datei).",
+    "too_much_requests_wait": "Zu viele Anfragen, versuche es in 10 Minuten nochmal."
   },
   "home": {
     "welcome_header": "Stark im Tief- und Kabelbau - seit 1978",

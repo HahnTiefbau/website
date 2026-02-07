@@ -14,6 +14,7 @@ type ContactFormState = {
   email: string;
   phone: string;
   message: string;
+  website: string;
 };
 
 const initialState: ContactFormState = {
@@ -22,6 +23,7 @@ const initialState: ContactFormState = {
   email: '',
   phone: '',
   message: '',
+  website: ''
 };
 
 export function ContactPage() {
@@ -76,14 +78,27 @@ export function ContactPage() {
           email: form.email,
           phone: form.phone,
           message: form.message,
+          website: form.website
         }).toString(),
       });
 
-      const data = (await res.json()) as { success: boolean; error?: string };
+      const data = (await res.json().catch(() => null)) as
+          | { success: boolean; error?: string }
+          | null;
 
-      if (!res.ok || !data.success) {
-        console.error(data.error);
-        throw new Error(data.error ?? 'Unknown error');
+      if (res.status === 429) {
+        addNotification({
+          type: 'error',
+          title: t('contact.contact_form'),
+          message: t('general.too_much_requests_wait'),
+          showTimeInMs: 5000,
+        });
+        return;
+      }
+
+      if (!res.ok || !data?.success) {
+        console.error(data?.error);
+        throw new Error(data?.error ?? 'Unknown error');
       }
 
       addNotification({
@@ -384,6 +399,19 @@ export function ContactPage() {
                 <p className="text-xs/6 text-gray-900 -my-2">
                   * {t('general.required_field')}
                 </p>
+              </div>
+
+              <div className="sr-only" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.website}
+                    onChange={e => setField('website', e.target.value)}
+                />
               </div>
 
               <div className="mt-8 flex justify-end">

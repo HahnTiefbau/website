@@ -38,6 +38,7 @@ type ApplicationFormState = {
   email: string;
   phone: string;
   message: string;
+  website: string;
 };
 
 const initialState: ApplicationFormState = {
@@ -46,6 +47,7 @@ const initialState: ApplicationFormState = {
   email: '',
   phone: '',
   message: '',
+  website: ''
 };
 
 const MAX_FILES = 5;
@@ -111,6 +113,7 @@ export function JobPage() {
       fd.append('email', form.email);
       fd.append('phone', form.phone);
       fd.append('message', form.message);
+      fd.append('website', form.website);
 
       for (const file of attachments.slice(0, 5)) {
         fd.append('documents[]', file, file.name);
@@ -121,10 +124,23 @@ export function JobPage() {
         body: fd,
       });
 
-      const data = await res.json().catch(() => null);
+      const data = (await res.json().catch(() => null)) as
+          | { success: boolean; error?: string }
+          | null;
+
+      if (res.status === 429) {
+        addNotification({
+          type: 'error',
+          title: t('general.application'),
+          message: t('general.too_much_requests_wait'),
+          showTimeInMs: 5000,
+        });
+        return;
+      }
 
       if (!res.ok || !data?.success) {
-        throw new Error(data?.error || 'Send failed');
+        console.error(data?.error);
+        throw new Error(data?.error ?? 'Unknown error');
       }
 
       addNotification({
@@ -572,6 +588,18 @@ export function JobPage() {
                 <p className="text-xs/6 text-gray-900 -my-2">
                   * {t('general.required_field')}
                 </p>
+              </div>
+              <div className="sr-only" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.website}
+                    onChange={e => setField('website', e.target.value)}
+                />
               </div>
               <div className="mt-8 flex justify-end">
                 <Button

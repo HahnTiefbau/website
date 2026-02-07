@@ -11,6 +11,18 @@ require __DIR__ . '/PHPMailer/src/SMTP.php';
 $secrets = require __DIR__ . '/../../config/secrets.php';
 
 header('Content-Type: application/json; charset=utf-8');
+
+require __DIR__ . '/_rate_limit.php';
+
+$ip = get_client_ip();
+[$okIp, $retryIp] = rate_limit('apply:ip:' . $ip, 5, 600);
+if (!$okIp) {
+  http_response_code(429);
+  header('Retry-After: ' . $retryIp);
+  echo json_encode(['success' => false, 'error' => 'Zu viele Anfragen. Bitte später erneut versuchen.']);
+  exit;
+}
+
 $firstName = trim((string)($_POST['firstName'] ?? ''));
 $lastName  = trim((string)($_POST['lastName'] ?? ''));
 $email     = trim((string)($_POST['email'] ?? ''));
@@ -19,6 +31,13 @@ $message   = trim((string)($_POST['message'] ?? ''));
 $jobName   = trim((string)($_POST['jobName'] ?? ''));
 
 $name = trim($firstName . ' ' . $lastName);
+
+$honeypot = trim((string)($_POST['website'] ?? ''));
+if ($honeypot !== '') {
+  http_response_code(400);
+  echo json_encode(['success' => false, 'error' => 'Ungültige Anfrage.']);
+  exit;
+}
 
 if ($firstName === '' || $lastName === '' || $email === '' || $message === '') {
   http_response_code(400);
@@ -117,8 +136,8 @@ try {
   $mail->isSMTP();
   $mail->Host       = 'in-v3.mailjet.com';
   $mail->SMTPAuth   = true;
-  $mail->Username = $secrets['MAILJET_API_KEY'];
-  $mail->Password = $secrets['MAILJET_SECRET_KEY'];
+  $mail->Username   = $secrets['MAILJET_API_KEY'];
+  $mail->Password   = $secrets['MAILJET_SECRET_KEY'];
   $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
   $mail->Port       = 587;
   $mail->CharSet    = 'UTF-8';
@@ -149,33 +168,6 @@ try {
   }
 
   $mail->send();
-
-  try {
-    $mail->clearAllRecipients();
-    $mail->clearReplyTos();
-    $mail->clearAttachments();
-
-    $mail->setFrom($fromEmail, $fromName);
-    $mail->addAddress($email, $name);
-
-    $mail->isHTML(false);
-    $mail->Subject = "Bestätigung: Bewerbung für {$subjectJob} erhalten";
-
-    $confirmLines = [
-      "Hallo {$name},",
-      "",
-      "vielen Dank für Ihre Bewerbung für „{$subjectJob}“.",
-      "Wir haben Ihre Unterlagen erfolgreich erhalten und melden uns zeitnah bei Ihnen.",
-      "",
-      "Viele Grüße",
-      $fromName,
-    ];
-    $mail->Body = implode("\n", $confirmLines);
-
-    $mail->send();
-  } catch (Exception $e) {
-    error_log('Confirmation mail failed: ' . $mail->ErrorInfo . ' / ' . $e->getMessage());
-  }
 
   echo json_encode(['success' => true]);
   exit;
