@@ -5,7 +5,7 @@ import vitePluginSvgr from "vite-plugin-svgr";
 import {fileURLToPath, URL} from "url";
 
 export default defineConfig({
-  base: './',
+  base: '/',
   plugins: [react(), tailwindcss(), vitePluginSvgr()],
   resolve: {
     alias: {
