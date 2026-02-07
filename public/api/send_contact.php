@@ -8,9 +8,6 @@ require __DIR__ . '/PHPMailer/src/Exception.php';
 require __DIR__ . '/PHPMailer/src/PHPMailer.php';
 require __DIR__ . '/PHPMailer/src/SMTP.php';
 
-error_log('__DIR__=' . __DIR__);
-error_log('DOCROOT=' . ($_SERVER['DOCUMENT_ROOT'] ?? ''));
-
 $secrets = require '/usr/home/rvsfiy/config/secrets.php';
 
 header('Content-Type: application/json; charset=utf-8');
