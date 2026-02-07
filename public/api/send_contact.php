@@ -8,9 +8,12 @@ require __DIR__ . '/PHPMailer/src/Exception.php';
 require __DIR__ . '/PHPMailer/src/PHPMailer.php';
 require __DIR__ . '/PHPMailer/src/SMTP.php';
 
-$secrets = require $_SERVER['DOCUMENT_ROOT'] . '/../config/secrets.php';
+$secrets = require __DIR__ . '/../../config/secrets.php';
 
 header('Content-Type: application/json; charset=utf-8');
+
+error_log('__DIR__=' . __DIR__);
+error_log('DOCROOT=' . ($_SERVER['DOCUMENT_ROOT'] ?? ''));
 
 require __DIR__ . '/_rate_limit.php';
 
