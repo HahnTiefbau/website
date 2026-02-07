@@ -67,7 +67,7 @@ export function ContactPage() {
     try {
       setIsSending(true);
 
-      const res = await fetch('/app/api/send_contact.php', {
+      const res = await fetch('/api/send_contact.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',

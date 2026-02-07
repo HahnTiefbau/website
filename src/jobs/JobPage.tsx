@@ -119,7 +119,7 @@ export function JobPage() {
         fd.append('documents[]', file, file.name);
       }
 
-      const res = await fetch('/app/api/send_application.php', {
+      const res = await fetch('/api/send_application.php', {
         method: 'POST',
         body: fd,
       });
