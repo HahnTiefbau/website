@@ -11,5 +11,13 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
-  }
+  },
+  server: {
+    proxy: {
+      '^/.*\\.php$': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      },
+    },
+  },
 })

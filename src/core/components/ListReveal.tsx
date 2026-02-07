@@ -28,7 +28,7 @@ export function ListReveal({
   }
 
   return (
-    <motion.div
+    <motion.span
       className={className}
       initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -39,6 +39,6 @@ export function ListReveal({
       }}
     >
       {children}
-    </motion.div>
+    </motion.span>
   );
 }

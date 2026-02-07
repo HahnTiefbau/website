@@ -1,0 +1,60 @@
+name: Production deployment of the frontend to Hetzner web hosting
+env:
+  COMPOSE_HTTP_TIMEOUT: 600
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+  actions: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Copy prod .htaccess to build folder
+        run: cp .htaccess dist/.htaccess
+
+      - name: Verify build output exists
+        run: |
+          test -d dist || (echo "dist/ not found - did the build run?" && exit 1)
+          ls -la dist | head -n 50
+
+      - name: Safety check (prevent wiping public_html)
+        run: |
+          TARGET="/public_html/app"
+          if [ "$TARGET" = "/public_html/" ] || [ "$TARGET" = "/public_html" ]; then
+            echo "Refusing to deploy to /public_html/"
+            exit 1
+          fi
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: /public_html/app/
+          dangerous-clean-slate: true
+          log-level: verbose
+          protocol: ftps

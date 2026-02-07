@@ -64,7 +64,28 @@ export function ContactPage() {
 
     try {
       setIsSending(true);
-      await new Promise(resolve => setTimeout(resolve, 500));
+
+      const res = await fetch('/app/api/send_contact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+        body: new URLSearchParams({
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          phone: form.phone,
+          message: form.message,
+        }).toString(),
+      });
+
+      const data = (await res.json()) as { success: boolean; error?: string };
+
+      if (!res.ok || !data.success) {
+        console.error(data.error);
+        throw new Error(data.error ?? 'Unknown error');
+      }
+
       addNotification({
         type: 'success',
         title: t('contact.contact_form'),
@@ -74,7 +95,8 @@ export function ContactPage() {
 
       setForm(initialState);
       setSubmittedOnce(false);
-    } catch {
+    } catch (error) {
+      console.error(error);
       addNotification({
         type: 'error',
         title: t('contact.contact_form'),

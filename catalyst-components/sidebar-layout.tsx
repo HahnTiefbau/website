@@ -1,9 +1,8 @@
 'use client'
 
 import * as Headless from '@headlessui/react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { NavbarItem } from './navbar'
-import {useNavbarStateContext} from "../src/core/util/state/navbar/useNavbarStateContext";
 import {Bars2Icon} from "@heroicons/react/20/solid";
 import {Divider} from "./divider";
 
@@ -46,7 +45,6 @@ export function SidebarLayout({
   children,
 }: React.PropsWithChildren<{ navbarMobile: React.ReactNode; navbarDesktop: React.ReactNode; sidebar: React.ReactNode }>) {
   let [showSidebar, setShowSidebar] = useState(false)
-    const {navbarState} = useNavbarStateContext()
 
   return (
     <div className="relative isolate h-dvh flex min-h-dvh w-screen max-w-screen bg-primary-mobile max-lg:flex-col lg:bg-primary">
@@ -57,7 +55,6 @@ export function SidebarLayout({
           w-75
           transition-transform
           duration-300 ease-in-out
-          ${navbarState?.isSidebarCollapsed ? '-translate-x-full' : 'translate-x-0'}
         `}
         >
             {sidebar}
@@ -86,7 +83,6 @@ export function SidebarLayout({
             className={`
           flex flex-1 min-h-0 flex-col lg:pb-2 lg:min-w-0 lg:pt-2 lg:pr-2
           transition-[padding-left] duration-300 ease-in-out
-          ${navbarState?.isSidebarCollapsed ? 'lg:pl-2' : 'lg:pl-75'}
         `}
         >
           <div

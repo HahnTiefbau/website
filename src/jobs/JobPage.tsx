@@ -48,6 +48,9 @@ const initialState: ApplicationFormState = {
   message: '',
 };
 
+const MAX_FILES = 5;
+const MAX_FILE_BYTES = 5 * 1024 * 1024;
+
 export function JobPage() {
   const { t } = useTranslation();
   const { jobId } = useParams<{ jobId: string }>();
@@ -82,14 +85,48 @@ export function JobPage() {
 
   async function onSubmitApplication(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     if (isSending) return;
+
     setSubmittedOnce(true);
     if (!isValidForm) return;
 
+    if (attachments.length > 5) {
+      addNotification({
+        type: 'error',
+        title: t('general.application'),
+        message: 'Maximal 5 PDF-Dateien erlaubt.',
+        showTimeInMs: 5000,
+      });
+      return;
+    }
+
     try {
       setIsSending(true);
-      await new Promise(resolve => setTimeout(resolve, 500));
+
+      const fd = new FormData();
+      const jobName = t(`jobs.${jobId}_header`);
+      fd.append('jobName', jobName);
+      fd.append('firstName', form.firstName);
+      fd.append('lastName', form.lastName);
+      fd.append('email', form.email);
+      fd.append('phone', form.phone);
+      fd.append('message', form.message);
+
+      for (const file of attachments.slice(0, 5)) {
+        fd.append('documents[]', file, file.name);
+      }
+
+      const res = await fetch('/app/api/send_application.php', {
+        method: 'POST',
+        body: fd,
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.error || 'Send failed');
+      }
+
       addNotification({
         type: 'success',
         title: t('general.application'),
@@ -114,16 +151,52 @@ export function JobPage() {
 
   const onAttachmentsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = Array.from(e.target.files ?? []);
+    const remainingSlots = Math.max(0, MAX_FILES - attachments.length);
 
-    const validPdfs: File[] = [];
+    if (remainingSlots === 0) {
+      addNotification({
+        type: 'error',
+        title: t('general.file_upload'),
+        message: t('general.max_allowed_files_5'),
+        showTimeInMs: 5000,
+      });
+      e.target.value = '';
+      return;
+    }
+
+    const accepted: File[] = [];
 
     for (const f of selected) {
-      if (isPdf(f)) validPdfs.push(f);
+      if (accepted.length >= remainingSlots) break;
+
+      if (!isPdf(f)) continue;
+
+      if (f.size > MAX_FILE_BYTES) {
+        addNotification({
+          type: 'error',
+          title: t('general.file_upload'),
+          message: t('general.file_too_big'),
+          showTimeInMs: 5000,
+        });
+        continue;
+      }
+
+      accepted.push(f);
     }
 
-    if (validPdfs.length > 0) {
-      setAttachments(prev => [...prev, ...validPdfs]);
+    if (selected.length > remainingSlots) {
+      addNotification({
+        type: 'error',
+        title: t('general.file_upload'),
+        message: t('general.max_allowed_files_5'),
+        showTimeInMs: 5000,
+      });
     }
+
+    if (accepted.length > 0) {
+      setAttachments(prev => [...prev, ...accepted]);
+    }
+
     e.target.value = '';
   };
 
@@ -312,6 +385,7 @@ export function JobPage() {
             as="form"
             from="up"
             distance={0}
+            encType="multipart/form-data"
             cacheKey="contact-form"
             onSubmit={onSubmitApplication}
             method="POST"
@@ -333,6 +407,7 @@ export function JobPage() {
                       type="text"
                       autoComplete="given-name"
                       value={form.firstName}
+                      disabled={attachments.length >= 5}
                       onChange={e => setField('firstName', e.target.value)}
                       className="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-1 focus:-outline-offset-2 focus:outline-accent-primary"
                     />
@@ -456,7 +531,7 @@ export function JobPage() {
 
                   <input
                     id="attachments"
-                    name="attachments"
+                    name="documents[]"
                     type="file"
                     multiple
                     className="hidden"

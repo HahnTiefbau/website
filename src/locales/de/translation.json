@@ -83,7 +83,10 @@
     "send_message": "Nachricht senden",
     "remove": "Entfernen",
     "uploaded_files": "Hochgeladene Datei(en)",
-    "invalid_email": "Ungültige Email-Adresse"
+    "invalid_email": "Ungültige Email-Adresse",
+    "file_upload": "Dateiupload",
+    "max_allowed_files_5": "Maximal 5 PDF-Dateien erlaubt.",
+    "file_too_big": "Eine oder mehrere Dateien sind zu groß (max. 5 MB pro Datei)."
   },
   "home": {
     "welcome_header": "Stark im Tief- und Kabelbau - seit 1978",
@@ -146,8 +149,17 @@
   "references": {
     "title": "Unsere Auftraggeber",
     "text": "Wir sind stolz darauf, seit vielen Jahren ein verlässlicher Partner für Energieversorger, Telekommunikationsunternehmen und öffentliche Auftraggeber zu sein.",
-    "projects_title": "Projekte",
-    "projects_text": "Bekommen Sie Einblicke in Projekte, die wir für unsere Partner im Energie- und Versorgungsnetz erfolgreich realisiert haben."
+    "projects_title": "Unsere Projekte",
+    "projects_text": "Unsere Projekte im Überblick: Hier zeigt sich eine Auswahl kürzlich abgeschlossener Projekte aus dem Energie und Versorgungsnetz. Von der Kabelverlegung bis zur Netzentflechtung steht dabei eine saubere, zuverlässige Umsetzung im Mittelpunkt.",
+    "project_1_place": "<bold>Einsatzort</bold>: Ludwigsburg Waldäcker",
+    "project_1_initiator": "<bold>Auftraggeber</bold>: Stadtwerke Ludwigsburg",
+    "project_1_todo": "<bold>Projektinhalt</bold>: Herstellung einer Leerrohrtrasse. Im Anschluss erfolgte der Einzug des Mittelspannungskabels in die vorbereitete Trasse.",
+    "project_2_place": "<bold>Einsatzort</bold>: Großbottwar",
+    "project_2_initiator": "<bold>Auftraggeber</bold>: Syna",
+    "project_2_todo": "<bold>Projektinhalt</bold>: Verlegung von Mittelspannungskabeln, darunter auch 800-mm²-Kabel. Die Gesamtlänge der verlegten Strecke beträgt 3500 Meter.",
+    "project_3_place": "<bold>Einsatzort</bold>: Buoch-Lehnenberg",
+    "project_3_initiator": "<bold>Auftraggeber</bold>: Syna",
+    "project_3_todo": "<bold>Projektinhalt</bold>: Netzentflechtung sowie Verlegung eines Mittelspannungskabels über eine Länge von 1900 Metern."
   },
   "about_us": {
     "intro_title": "Ihr Partner für Tief- und Kabelbau seit 1978",

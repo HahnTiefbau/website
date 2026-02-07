@@ -145,9 +145,18 @@
   },
   "references": {
     "title": "Our Clients",
-    "text": "We are proud to have been a reliable partner for energy providers, telecommunications companies, and public sector clients for many years.",
-    "projects_title": "Projects",
-    "projects_text": "Get insights into projects we have successfully delivered for our partners in the energy and utility networks sector."
+    "text": "We are proud to have been a reliable partner for many years for energy suppliers, telecommunications companies, and public-sector clients.",
+    "projects_title": "Our Projects",
+    "projects_text": "An overview of our projects: Here is a selection of recently completed projects from the energy and utility grid sector. From cable installation to grid unbundling, the focus is on clean, reliable execution.",
+    "project_1_place": "<bold>Location</bold>: Ludwigsburg Waldäcker",
+    "project_1_initiator": "<bold>Client</bold>: Stadtwerke Ludwigsburg",
+    "project_1_todo": "<bold>Scope of work</bold>: Construction of an empty conduit route. This was followed by pulling the medium-voltage cable into the prepared route.",
+    "project_2_place": "<bold>Location</bold>: Großbottwar",
+    "project_2_initiator": "<bold>Client</bold>: Syna",
+    "project_2_todo": "<bold>Scope of work</bold>: Installation of medium-voltage cables, including 800 mm² cables. The total installed length is 3,500 meters.",
+    "project_3_place": "<bold>Location</bold>: Buoch-Lehnenberg",
+    "project_3_initiator": "<bold>Client</bold>: Syna",
+    "project_3_todo": "<bold>Scope of work</bold>: Grid unbundling as well as installation of a medium-voltage cable over a length of 1,900 meters."
   },
   "about_us": {
     "intro_title": "Your partner for civil engineering and cable construction since 1978",

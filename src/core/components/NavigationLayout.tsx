@@ -1,15 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  TransitionChild,
-} from '@headlessui/react';
+import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 import { Link } from '../../../catalyst-components/link';
 import { Text } from '../../../catalyst-components/text';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { SidebarItem } from '../../../catalyst-components/sidebar';
 import { Button } from '../../../catalyst-components/button';
 import { NavbarItem } from '../../../catalyst-components/navbar';
@@ -44,6 +39,31 @@ export function NavigationLayout() {
 
   const { t, i18n } = useTranslation();
 
+  const headerRef = useRef<HTMLElement | null>(null);
+
+  useLayoutEffect(() => {
+    if (!headerRef.current) return;
+
+    const el = headerRef.current;
+
+    const apply = () => {
+      const h = el.getBoundingClientRect().height;
+      document.documentElement.style.setProperty('--header-h', `${h}px`);
+    };
+
+    apply();
+
+    const ro = new ResizeObserver(() => apply());
+    ro.observe(el);
+
+    window.addEventListener('resize', apply);
+
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', apply);
+    };
+  }, []);
+
   useEffect(() => {
     const cookieLang = Cookies.get('site_language');
     if (cookieLang && cookieLang !== i18n.language) {
@@ -56,15 +76,25 @@ export function NavigationLayout() {
     i18n.changeLanguage(lang);
   }
 
+  useEffect(() => {
+    if (mobileMenuOpen) setMobileMenuOpen(false);
+  }, [location.pathname, mobileMenuOpen]);
+
   const currentLangShort =
     i18n.language === 'de'
       ? 'DE'
       : i18n.language === 'en'
         ? 'EN'
         : i18n.language?.toUpperCase();
+
+  const toggleMobileMenu = () => setMobileMenuOpen(v => !v);
+
   return (
     <div className="bg-background-white-gray">
-      <header className="sticky top-0 z-50 bg-background-white/85 backdrop-blur border-b border-text-900/10">
+      <header
+        ref={headerRef}
+        className="sticky top-0 z-[80] bg-background-white/85 backdrop-blur border-b border-text-900/10"
+      >
         <nav
           aria-label="Global"
           className="flex items-center justify-between h-full p-6 lg:px-6"
@@ -105,11 +135,33 @@ export function NavigationLayout() {
             </div>
           </div>
           <div className="flex lg:hidden">
-            <NavbarItem onClick={() => setMobileMenuOpen(true)}>
-              <span className="flex-none">
+            <NavbarItem
+              onClick={toggleMobileMenu}
+              aria-expanded={mobileMenuOpen}
+            >
+              <span className="relative block h-6 w-6">
                 <Bars3Icon
                   aria-hidden="true"
-                  className="size-5 cursor-pointer"
+                  className={[
+                    'absolute inset-0 h-6 w-6',
+                    'transition-all duration-200 ease-out',
+                    'motion-reduce:transition-none',
+                    mobileMenuOpen
+                      ? 'opacity-0 rotate-90 scale-75'
+                      : 'opacity-100 rotate-0 scale-100',
+                  ].join(' ')}
+                />
+
+                <XMarkIcon
+                  aria-hidden="true"
+                  className={[
+                    'absolute inset-0 h-6 w-6',
+                    'transition-all duration-200 ease-out',
+                    'motion-reduce:transition-none',
+                    mobileMenuOpen
+                      ? 'opacity-100 rotate-0 scale-100'
+                      : 'opacity-0 -rotate-90 scale-75',
+                  ].join(' ')}
                 />
               </span>
             </NavbarItem>
@@ -147,44 +199,25 @@ export function NavigationLayout() {
           <DialogBackdrop
             transition
             className="
-                fixed inset-0 z-[60] bg-black/30
-                transition-opacity duration-300 ease-out
-                data-[closed]:opacity-0
-              "
+              fixed inset-x-0 bottom-0 top-[var(--header-h)]
+              z-[60] bg-black/30
+              transition-opacity duration-300 ease-out
+              data-[closed]:opacity-0
+            "
           />
           <DialogPanel
             transition
             className="
-                fixed inset-y-0 right-0 z-[70] w-full overflow-y-auto bg-white p-4
-                sm:max-w-sm sm:ring-1 sm:ring-gray-900/10
-
-                transform transition duration-300 ease-out will-change-transform
-                data-[closed]:translate-x-full data-[closed]:opacity-0
-                data-[leave]:duration-200 data-[leave]:ease-in
-              "
+              fixed right-0 bottom-0 top-[var(--header-h)]
+              z-[70] w-full overflow-y-auto bg-white p-4
+              h-[calc(100dvh-var(--header-h))]
+              sm:max-w-sm sm:ring-1 sm:ring-gray-900/10
+              transform transition duration-300 ease-out will-change-transform
+              data-[closed]:translate-x-full data-[closed]:opacity-0
+              data-[leave]:duration-200 data-[leave]:ease-in
+            "
           >
-            <div className="flex items-center justify-between">
-              <TransitionChild
-                as="div"
-                enter="transition-opacity delay-50 ease-out"
-                enterFrom="opacity-0"
-                enterTo="opacity-100"
-                leave="transition-opacity duration-0"
-                leaveFrom="opacity-100"
-                leaveTo="opacity-0"
-                className="motion-reduce:transition-none motion-reduce:delay-0"
-              >
-                <Link href={'/'} className="pt-0.25">
-                  <img alt="" src={logo} className="h-12 w-auto" />
-                </Link>
-              </TransitionChild>
-              <NavbarItem onClick={() => setMobileMenuOpen(false)}>
-                <span className="flex-none h-6 w-6">
-                  <XMarkIcon aria-hidden="true" className="size-6" />
-                </span>
-              </NavbarItem>
-            </div>
-            <div className="mt-6 flow-root">
+            <div className="flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
                   {navigation.map(item => {
@@ -265,7 +298,7 @@ export function NavigationLayout() {
             showTimeInMs={showTimeInMs ?? 3000}
             onClose={() => removeNotification(id)}
           />
-        ))}
+        ))}{' '}
       </main>
     </div>
   );
