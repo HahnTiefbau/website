@@ -47,7 +47,7 @@ const initialState: ApplicationFormState = {
   email: '',
   phone: '',
   message: '',
-  website: ''
+  website: '',
 };
 
 const MAX_FILES = 5;
@@ -124,9 +124,10 @@ export function JobPage() {
         body: fd,
       });
 
-      const data = (await res.json().catch(() => null)) as
-          | { success: boolean; error?: string }
-          | null;
+      const data = (await res.json().catch(() => null)) as {
+        success: boolean;
+        error?: string;
+      } | null;
 
       if (res.status === 429) {
         addNotification({
@@ -592,13 +593,13 @@ export function JobPage() {
               <div className="sr-only" aria-hidden="true">
                 <label htmlFor="website">Website</label>
                 <input
-                    id="website"
-                    name="website"
-                    type="text"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    value={form.website}
-                    onChange={e => setField('website', e.target.value)}
+                  id="website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.website}
+                  onChange={e => setField('website', e.target.value)}
                 />
               </div>
               <div className="mt-8 flex justify-end">

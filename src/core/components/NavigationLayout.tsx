@@ -77,8 +77,8 @@ export function NavigationLayout() {
   }
 
   useEffect(() => {
-    if (mobileMenuOpen) setMobileMenuOpen(false);
-  }, [location.pathname, mobileMenuOpen]);
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   const currentLangShort =
     i18n.language === 'de'
@@ -170,7 +170,7 @@ export function NavigationLayout() {
             <div className="relative z-[60]">
               <Dropdown>
                 <DropdownButton outline>{currentLangShort}</DropdownButton>
-                <DropdownMenu className="z-[70]">
+                <DropdownMenu className="z-[90]">
                   <DropdownItem
                     className="cursor-pointer"
                     onClick={() => handleLanguageChange('de')}
