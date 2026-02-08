@@ -1,5 +1,5 @@
 import { Button } from '../../catalyst-components/button';
-import { PaperClipIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon, PaperClipIcon } from '@heroicons/react/24/outline';
 import { useTranslation } from 'react-i18next';
 import job_1_img from '../assets/job_1.jpg';
 import job_2_img from '../assets/machines_4.jpg';
@@ -10,6 +10,7 @@ import { useNotifications } from '../core/util/state/notification/useNotificatio
 import { CircularProgressIndicator } from '../core/components/CircularProogressIndicator';
 import { Reveal } from '../core/components/Reveal';
 import { ListReveal } from '../core/components/ListReveal';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const IMAGES: Record<string, string> = {
   job_1: job_1_img,
@@ -62,6 +63,10 @@ export function JobPage() {
   const [form, setForm] = useState<ApplicationFormState>(initialState);
   const [submittedOnce, setSubmittedOnce] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [
+    isSentApplicationSuccessfullyShown,
+    setIsSentApplicationSuccessfullyShown,
+  ] = useState(false);
 
   const errors = useMemo(() => {
     const e: Partial<Record<keyof ApplicationFormState, string>> = {};
@@ -89,6 +94,7 @@ export function JobPage() {
     e.preventDefault();
     if (isSending) return;
 
+    setIsSentApplicationSuccessfullyShown(false);
     setSubmittedOnce(true);
     if (!isValidForm) return;
 
@@ -144,13 +150,7 @@ export function JobPage() {
         throw new Error(data?.error ?? 'Unknown error');
       }
 
-      addNotification({
-        type: 'success',
-        title: t('general.application'),
-        message: t('jobs.application_successfully_sent'),
-        showTimeInMs: 4000,
-      });
-
+      setIsSentApplicationSuccessfullyShown(true);
       setForm(initialState);
       setAttachments([]);
       setSubmittedOnce(false);
@@ -618,6 +618,36 @@ export function JobPage() {
                   </span>
                 </Button>
               </div>
+              <AnimatePresence>
+                {isSentApplicationSuccessfullyShown && (
+                  <motion.div
+                    key="success-snackbar"
+                    initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                    transition={{ duration: 0.25, ease: 'easeOut' }}
+                    className="flex w-full flex-col items-center space-y-4 sm:items-center mt-8"
+                  >
+                    <div className="pointer-events-auto w-full max-w-2xl rounded-xl bg-snackbar-bg-mobile lg:bg-snackbar-bg shadow-sm ring-1 ring-black/5">
+                      <div className="p-4">
+                        <div className="flex items-start">
+                          <div className="shrink-0">
+                            <CheckCircleIcon
+                              aria-hidden={true}
+                              className="size-6 text-green-700"
+                            />
+                          </div>
+                          <div className="ml-3 w-0 flex-1 pt-0.5">
+                            <p className="text-sm font-medium text-text-dialog">
+                              {t('jobs.application_successfully_sent')}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </Reveal>
         </div>
