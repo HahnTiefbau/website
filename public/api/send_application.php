@@ -122,7 +122,7 @@ if (isset($_FILES['documents'])) {
 
 $fromEmail = 'no-reply@hahn-tief-kabelbau.de';
 $fromName  = 'Hahn Tief- & Kabelbau';
-$internalRecipient = 'MatthiasKerat1996@gmail.com';
+$internalRecipient = 'lara.seckler@hahn-tief-kabelbau.de';
 
 $subjectJob = $jobName !== '' ? $jobName : 'Unbekannt';
 

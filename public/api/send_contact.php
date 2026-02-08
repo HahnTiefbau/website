@@ -75,7 +75,7 @@ try {
   $mail->CharSet    = 'UTF-8';
 
   $mail->setFrom('no-reply@hahn-tief-kabelbau.de', 'Kontaktformular Webseite');
-  $mail->addAddress('MatthiasKerat1996@gmail.com');
+  $mail->addAddress('lara.seckler@hahn-tief-kabelbau.de');
   $mail->addReplyTo($email, $name);
   $mail->isHTML(false);
   $mail->Subject = 'Neue Nachricht vom Kontaktformular';
