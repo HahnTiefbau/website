@@ -1,5 +1,9 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  RewriteCond %{HTTP_HOST} !^www\.hahn-tief-kabelbau\.de$ [NC]
+  RewriteRule ^ https://www.hahn-tief-kabelbau.de%{REQUEST_URI} [R=301,L]
+  RewriteRule ^robots\.txt$ - [L]
+  RewriteRule ^sitemap\.xml$ - [L]
   RewriteRule ^impressum\.html$ /impressum [R=301,L]
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
