@@ -1,5 +1,7 @@
 {
   "data_safety_page": {
+    "seo_title": "Datenschutz",
+    "seo_description": "Datenschutzhinweise von Ludwig Hahn Tief & Kabelbau – Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.",
     "small_title": "Datenschutzhinweise",
     "section_1_header": "Datenschutzhinweise nach §13 DSGVO",
     "section_1_text": "Wir freuen uns über Ihr Interesse an unserer Website. Der Schutz Ihrer personenbezogenen Daten bei deren Verarbeitung anlässlich Ihres Besuchs auf unserer Internetseite ist uns ein wichtiges Anliegen.",
@@ -38,6 +40,8 @@
     "section_6_text_4": "Das Cookie wird für die Dauer von 365 Tagen gespeichert oder bis es in den Einstellungen des Browsers gelöscht wird."
   },
   "imprint": {
+    "seo_title": "Impressum",
+    "seo_description": "Impressum und rechtliche Informationen von Ludwig Hahn Tief & Kabelbau.",
     "title": "Impressum",
     "title_1": "Angaben gemäß § 5 TMG",
     "register_entry": "Registereintrag",
@@ -90,6 +94,8 @@
     "too_much_requests_wait": "Zu viele Anfragen, versuche es in 10 Minuten nochmal."
   },
   "home": {
+    "seo_title": "Startseite",
+    "seo_description": "Ludwig Hahn Tief & Kabelbau: Tiefbau, Kabelverlegung und Glasfaserprojekte – zuverlässig, präzise und termingerecht in der Region.",
     "welcome_header": "Stark im Tief- und Kabelbau - seit 1978",
     "welcome_text_1": "Von Tiefbau über Kabelverlegung bis zu Glasfaserprojekten:",
     "welcome_text_2": "Wir schaffen die technische Basis für digitale und urbane Entwicklung. Mit Erfahrung, moderner Technik und Teamgeist realisieren wir Projekte präzise, zuverlässig und nachhaltig – für sichere Netze, starke Verbindungen und eine zukunftsfähige Infrastruktur.",
@@ -117,6 +123,8 @@
     "job_offers_look_job_offers": "Siehe dir unsere Stellenangebote an"
   },
   "services": {
+    "seo_title": "Leistungen",
+    "seo_description": "Unsere Leistungen im Tief- und Kabelbau: Energie-, Telekommunikations- und Infrastrukturprojekte – sicher, präzise und zuverlässig.",
     "intro_header": "Unsere Leistungen",
     "intro_text": "Wir schaffen Verbindung seit über 45 Jahren. Ob Energie, Telekommunikation oder Infrastruktur: Wir realisieren sichere Netze, starke Verbindungen und ein stabiles Fundament für die Zukunft.",
     "attribute_1_header": "Tiefbau für Energieversorger und Stadtwerke",
@@ -148,6 +156,8 @@
     "numbers_point_4_description": "Meter Kabel verlegt"
   },
   "references": {
+    "seo_title": "Referenzen",
+    "seo_description": "Ausgewählte Referenzen und Projekte im Tief- und Kabelbau. Einblicke in unsere Arbeit und Auftraggeber.",
     "title": "Unsere Auftraggeber",
     "text": "Wir sind stolz darauf, seit vielen Jahren ein verlässlicher Partner für Energieversorger, Telekommunikationsunternehmen und öffentliche Auftraggeber zu sein.",
     "projects_title": "Unsere Projekte",
@@ -163,6 +173,8 @@
     "project_3_todo": "<bold>Projektinhalt</bold>: Netzentflechtung sowie Verlegung eines Mittelspannungskabels über eine Länge von 1900 Metern."
   },
   "about_us": {
+    "seo_title": "Über uns",
+    "seo_description": "Familienunternehmen für Tiefbau und Kabelbau seit 1978. Lernen Sie uns und unser Team kennen.",
     "intro_title": "Ihr Partner für Tief- und Kabelbau seit 1978",
     "intro_text": "Seit 1978 stehen wir als familiengeführtes, mittelständisches Bauunternehmen in zweiter und dritter Generation für zuverlässige Leistungen im Tief- und Kabelbau. Als leistungsfähiger Partner für Tiefbauarbeiten mit besonderer Spezialisierung im Kabeltiefbau verbinden wir langjährige Erfahrung mit moderner Technik und hoher Ausführungsqualität. Wir realisieren Projekte für Energieversorger, Telekommunikationsunternehmen und kommunale Auftraggeber – fachgerecht, termingerecht und mit einem klaren Qualitätsanspruch. Zahlreiche zufriedene Kunden bestätigen unsere zuverlässige Zusammenarbeit. Die Kabelverlegung erfolgt nach geltenden Standards und unter Einsatz aller erforderlichen Schutz- und Arbeitseinrichtungen. ",
     "management": "Management",
@@ -287,6 +299,8 @@
     "application_could_not_be_sent": "Ihre Bewerbung konnte nicht gesendet werden. Bitte versuchen Sie es noch einmal."
   },
   "contact": {
+    "seo_title": "Kontakt",
+    "seo_description": "Kontaktieren Sie uns telefonisch, per E-Mail oder über das Kontaktformular – wir freuen uns auf Ihre Nachricht.",
     "title": "Kontaktieren Sie uns",
     "text_1": "Kontaktieren Sie uns bei allgemeinen Fragen gerne telefonisch, per E-Mail oder über das Kontaktformular. Wir freuen uns auf Ihre Nachricht.",
     "text_2_1": "Für Bewerbungen auf eine unserer",

@@ -1,5 +1,7 @@
 {
   "data_safety_page": {
+    "seo_title": "Privacy Policy",
+    "seo_description": "Privacy information for Ludwig Hahn Tief & Kabelbau – details on the processing of personal data in accordance with the GDPR.",
     "small_title": "Data Protection Information",
     "section_1_header": "Data Protection Information according to Art. 13 GDPR",
     "section_1_text": "We appreciate your interest in our website. Protecting your personal data during its processing when visiting our website is very important to us.",
@@ -38,6 +40,8 @@
     "section_6_text_4": "The cookie is stored for a period of 365 days or until it is deleted in the browser settings."
   },
   "imprint": {
+    "seo_title": "Imprint",
+    "seo_description": "Imprint and legal information for Ludwig Hahn Tief & Kabelbau.",
     "title": "Imprint",
     "title_1": "Information according to § 5 German TMG",
     "register_entry": "Commercial Register Entry",
@@ -90,6 +94,8 @@
     "too_much_requests_wait": "Too many requests. Please try again in 10 minutes."
   },
   "home": {
+    "seo_title": "Landing page",
+    "seo_description": "Ludwig Hahn Tief & Kabelbau: civil engineering, cable installation and fibre projects – reliable, precise and on schedule across the region.",
     "welcome_header": "Strong in civil engineering and cable construction – since 1978",
     "welcome_text_1": "From civil engineering and cable installation to fiber optic projects:",
     "welcome_text_2": "We create the technical foundation for digital and urban development. With experience, modern technology, and strong team spirit, we deliver projects precisely, reliably, and sustainably – for secure networks, strong connections, and future-proof infrastructure.",
@@ -117,6 +123,8 @@
     "job_offers_look_job_offers": "View our job openings"
   },
   "services": {
+    "seo_title": "Services",
+    "seo_description": "Our civil engineering and cable construction services for energy, telecommunications and infrastructure projects – safe, precise and reliable.",
     "intro_header": "Our Services",
     "intro_text": "We have been creating connections for over 45 years. Whether energy, telecommunications, or infrastructure: we deliver secure networks, strong connections, and a stable foundation for the future.",
     "attribute_1_header": "Civil Engineering for Energy Providers and Municipal Utilities",
@@ -148,6 +156,8 @@
     "numbers_point_4_description": "Meters of cable installed"
   },
   "references": {
+    "seo_title": "References",
+    "seo_description": "Selected references and projects in civil engineering and cable construction. Insights into our work and clients.",
     "title": "Our Clients",
     "text": "We are proud to have been a reliable partner for many years for energy suppliers, telecommunications companies, and public-sector clients.",
     "projects_title": "Our Projects",
@@ -163,6 +173,8 @@
     "project_3_todo": "<bold>Scope of work</bold>: Grid unbundling as well as installation of a medium-voltage cable over a length of 1,900 meters."
   },
   "about_us": {
+    "seo_title": "About Us",
+    "seo_description": "Family-owned civil engineering and cable construction company since 1978. Get to know us and our team.",
     "intro_title": "Your partner for civil engineering and cable construction since 1978",
     "intro_text": "Since 1978, we have stood for reliable services in civil engineering and cable construction as a family-owned, medium-sized construction company now in its second and third generation. As a capable partner for civil engineering projects with a strong specialization in cable construction, we combine decades of experience with modern technology and a high standard of workmanship. We carry out projects for energy suppliers, telecommunications companies, and public-sector clients – professionally, on schedule, and with a clear commitment to quality. Numerous satisfied customers confirm our reliable cooperation. Cable installation is carried out in accordance with current standards and using all required safety and protective equipment.",
     "management": "Management",
@@ -287,6 +299,8 @@
     "application_could_not_be_sent": "Your application could not be sent. Please try again."
   },
   "contact": {
+    "seo_title": "Contact",
+    "seo_description": "Contact us by phone, email or via the contact form – we look forward to your message.",
     "title": "Contact us",
     "text_1": "For general inquiries, please feel free to contact us by phone, email, or via the contact form. We look forward to hearing from you.",
     "text_2_1": "For applications to one of our",
