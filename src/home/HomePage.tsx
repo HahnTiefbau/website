@@ -1,7 +1,7 @@
 import group2 from '../assets/group_2.jpg';
 import welcome_page_job_offers from '../assets/about_us_management.jpg';
 import { CheckCircleIcon } from '@heroicons/react/24/outline';
-import { Link } from '../../catalyst-components/link';
+//import { Link } from '../../catalyst-components/link';
 import { useTranslation } from 'react-i18next';
 import { ListReveal } from '../core/components/ListReveal';
 import { Reveal } from '../core/components/Reveal';
@@ -163,6 +163,7 @@ export function HomePage() {
                   ))}
                 </ul>
                 <div className="mt-10 flex">
+                  {/*
                   <Link
                     href="/about?scroll=jobs"
                     className="text-sm/6 font-semibold text-accent-primary hover:text-orange-600"
@@ -170,6 +171,10 @@ export function HomePage() {
                     {t('home.job_offers_look_job_offers')}
                     <span aria-hidden="true">&rarr;</span>
                   </Link>
+                  */}
+                  <p className="text-sm leading-6 text-gray-500 italic">
+                    {t('home.currently_not_searching_for_jobs')}
+                  </p>
                 </div>
               </div>
             </div>

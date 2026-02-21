@@ -10,7 +10,7 @@ import convoy_lobes from '../assets/convoy_lobes.jpg';
 import convoy_prigl from '../assets/convoy_prigl.jpg';
 import convoy_tokic from '../assets/convoy_tokic.jpg';
 import convoy_vukovic from '../assets/convoy_vukovic.jpg';
-import about_us_job_offers from '../assets/about_us_job_offers.jpg';
+// import about_us_job_offers from '../assets/about_us_job_offers.jpg';
 import about_us_galery_1 from '../assets/about_us_galery_1.jpg';
 import about_us_galery_2 from '../assets/about_us_galery_2.jpg';
 import about_us_galery_3 from '../assets/about_us_galery_3.jpg';
@@ -18,7 +18,7 @@ import about_us_galery_4 from '../assets/about_us_galery_4.jpg';
 import machines_3 from '../assets/machines_3.jpg';
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Link } from '../../catalyst-components/link';
+// import { Link } from '../../catalyst-components/link';
 import { Trans, useTranslation } from 'react-i18next';
 import { ListReveal } from '../core/components/ListReveal';
 import { Reveal } from '../core/components/Reveal';
@@ -190,6 +190,7 @@ const missing = [
   { text: 'about_us.missing_staff_7' },
 ];
 
+/*
 const jobOffers = [
   {
     header: 'about_us.job_offer_1',
@@ -207,6 +208,7 @@ const jobOffers = [
     href: '/jobs/job_3',
   },
 ];
+*/
 
 export function AboutUsPage() {
   const { t } = useTranslation();
@@ -480,7 +482,7 @@ export function AboutUsPage() {
               </ListReveal>
             ))}
           </ul>
-          <p className="text-gray-600 mt-8">
+          <p className="text-gray-600 mt-8 mb-24">
             <span className="text-gray-600">
               {t('about_us.missing_header')}
             </span>
@@ -505,6 +507,7 @@ export function AboutUsPage() {
             ))}
           </p>
         </div>
+        {/**
         <div
           ref={jobsRef}
           className="mx-auto mt-32 max-w-7xl px-6 sm:mt-48 lg:px-8 mb-32"
@@ -575,6 +578,7 @@ export function AboutUsPage() {
             </div>
           </div>
         </div>
+         **/}
       </div>
     </>
   );

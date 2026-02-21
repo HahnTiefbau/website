@@ -120,7 +120,8 @@
     "job_offers_point_3": "30 days of vacation",
     "job_offers_point_4": "Modern machinery",
     "job_offers_point_5": "Collegial working environment",
-    "job_offers_look_job_offers": "View our job openings"
+    "job_offers_look_job_offers": "View our job openings",
+    "currently_not_searching_for_jobs": "We don’t have any open positions right now, but feel free to check back soon."
   },
   "services": {
     "seo_title": "Services",
