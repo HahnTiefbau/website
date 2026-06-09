@@ -96,9 +96,12 @@ export function ImprintPage() {
                 <Text className="text-text-900 text-lg font-semibold">
                   {t('imprint.ceo')}
                 </Text>
-                <div>
+                <div className="flex flex-col gap-1">
                   <Text className="text-text-700 text-base">
                     {t('imprint.ceo_1')}
+                  </Text>
+                  <Text className="text-text-700 text-base">
+                    {t('imprint.ceo_2')}
                   </Text>
                 </div>
               </div>
