@@ -2,8 +2,8 @@ import { Button } from '../../catalyst-components/button';
 import { CheckCircleIcon, PaperClipIcon } from '@heroicons/react/24/outline';
 import { useTranslation } from 'react-i18next';
 import job_1_img from '../assets/job_1.jpg';
-import job_2_img from '../assets/machines_4.jpg';
-import job_3_img from '../assets/machines_1.jpg';
+// import job_2_img from '../assets/machines_4.jpg';
+// import job_3_img from '../assets/machines_1.jpg';
 import { useParams } from 'react-router-dom';
 import { useState, useMemo } from 'react';
 import { useNotifications } from '../core/util/state/notification/useNotification';
@@ -14,8 +14,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const IMAGES: Record<string, string> = {
   job_1: job_1_img,
-  job_2: job_2_img,
-  job_3: job_3_img,
+  // job_2: job_2_img,
+  // job_3: job_3_img,
 };
 
 const TODOS_COUNT: Record<string, number> = { job_1: 4, job_2: 4, job_3: 6 };
